@@ -1,0 +1,87 @@
+﻿@model PortalWeb.Areas.SystemConfig.Models.SysGroupProgramVM
+
+@using (Html.BeginForm("Edit", "SysGroupProgram", FormMethod.Post, new { role = "form", id = "EditBE" }))
+{
+    <table class="main_table" border="1" cellpadding="1" cellspacing="1" style="width:100%;">
+        <thead>
+            <tr>
+                <td colspan="4">
+                    資料檢視
+                </td>
+            </tr>
+        </thead>
+        <tr>
+            <th class="mainLabel">
+                <span class="requiredMark">＊</span>角色群組：
+            </th>
+            <td class="editTable" colspan="3">
+                @Html.Label(Model.EditSysGroup.GroupIdName)
+            </td>
+        </tr>
+        <tr>
+            <th class="mainLabel">
+                <span class="requiredMark">＊</span>管理群組：
+            </th>
+            <td class="editTable" colspan="3">
+                @Html.Label(Model.EditSysGroup.AdminGroup ? "是" : "否")
+            </td>
+        </tr>
+        <tr>
+            <th class="mainLabel">
+                狀態：
+            </th>
+            <td class="editTable" colspan="3">
+                @if (Model.EditSysGroup.StatusFlag == "Y")
+                {
+                    @Html.Label("有效")
+                }
+                else if (Model.EditSysGroup.StatusFlag == "N")
+                {
+                    @Html.Label("無效")
+                }
+                else
+                {
+                    @Html.Label(Model.EditSysGroup.StatusFlag)
+                }
+            </td>
+        </tr>
+        @if (Model.EditSysGroup != null)
+        {
+            <tr>
+                <th class="mainLabel" width="15%">
+                    建立者：
+                </th>
+                <td class="editTable" width="35%">
+                    @Html.Label(Model.EditSysGroup.CreatedByName)
+                </td>
+                <th class="mainLabel" width="15%">
+                    建立時間：
+                </th>
+                <td class="editTable" width="35%">
+                    @Html.Label(Model.EditSysGroup.CreatedDate.ToString("yyyy/MM/dd HH:mm:ss"))
+                </td>
+            </tr>
+            <tr>
+                <th class="mainLabel">
+                    異動者：
+                </th>
+                <td class="editTable">
+                    @Html.Label(Model.EditSysGroup.UpdatedByName)
+                </td>
+                <th class="mainLabel">
+                    異動時間：
+                </th>
+                <td class="editTable">
+                    @Html.Label(Model.EditSysGroup.UpdatedDate.ToString("yyyy/MM/dd HH:mm:ss"))
+                </td>
+            </tr>
+        }
+        <tfoot>
+            <tr>
+                <td align="center" colspan="4">
+                    @Html.ActionLink("離開", "Index", null, new { @class = "Exit" })
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+}

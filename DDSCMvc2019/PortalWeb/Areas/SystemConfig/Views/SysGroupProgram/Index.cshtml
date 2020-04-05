@@ -1,0 +1,69 @@
+﻿@model PortalWeb.Areas.SystemConfig.Models.SysGroupProgramVM
+
+@using (Html.BeginForm("Index", "SysGroupProgram", FormMethod.Post, new { role = "form", id = "QueryList" }))
+{
+    <table border="1" cellpadding="1" cellspacing="1" class="main_table" style="width:100%;">
+        <tr>
+            <th class="mainLabel" width="15%">
+                角色群組：
+            </th>
+            <td class="editTable" width="85%">
+                @Html.DropDownListFor(a => a.GroupId, Model.GroupNameList)
+            </td>
+        </tr>
+        <tfoot>
+            <tr>
+                <td align="center" colspan="2">
+                    <a href="javascript:$('#QueryList').submit();" class="Search">查詢</a>&nbsp;&nbsp;@Html.ActionLink("新增", "Edit", null, new { @class = "Add" })
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+    <br />
+    <div id="resultDiv">
+        <table class="mainTable" border="0" cellpadding="1" cellspacing="1" style="width: 100%;">
+            <tr>
+                <td>
+                    @if (Model.SysGroupList != null && Model.SysGroupList.Count > 0)
+                    {
+                        @Html.Partial("_GridViewPartial")
+                    }
+                </td>
+            </tr>
+
+        </table>
+    </div>
+
+    <script>
+        var alertMsg = '@Model.Message';
+        if (alertMsg != '') {
+            alert(alertMsg);
+            @(Model.Message = string.Empty)
+        }
+
+        function CustomButtonClick(s, e, url) {
+            var key = s.GetRowKey(e.visibleIndex);
+            if (e.buttonID === "editBtn") {
+                var destUrl = '@Url.Action("Edit", "SysGroupProgram", new { id = "REPLACEME" })';
+                window.location.href = destUrl.replace('REPLACEME', key);
+            }
+            else if (e.buttonID === "viewBtn") {
+                var dest = '@Url.Action("Show", "SysGroupProgram", new { id = "REPLACEME"})';
+                window.location.href = dest.replace('REPLACEME', key);
+            }
+            else if (e.buttonID === "delBtn") {
+                if (!confirm("確定是否刪除?")) {
+                    return false;
+                }
+                var dest = '@Url.Action("Delete", "SysGroupProgram", new {id = "REPLACEME"})';
+                window.location.href = dest.replace('REPLACEME', key);
+            }
+            else if (e.buttonID === "editProgramBtn") {
+                var dest = '@Url.Action("EditProgram", "SysGroupProgram", new { id = "REPLACEME" })';
+                window.location.href = dest.replace('REPLACEME', key);
+            }
+        }
+    </script>
+}
+
+

@@ -1,0 +1,9 @@
+C:\Temp\MVC\DDSCMvc2019\PortalService.Contract\bin\Debug\PortalService.Contract.dll
+C:\Temp\MVC\DDSCMvc2019\PortalService.Contract\bin\Debug\PortalService.Contract.pdb
+C:\Temp\MVC\DDSCMvc2019\PortalService.Contract\bin\Debug\Entity.dll
+C:\Temp\MVC\DDSCMvc2019\PortalService.Contract\bin\Debug\Entity.pdb
+C:\Temp\MVC\DDSCMvc2019\PortalService.Contract\obj\Debug\PortalService.Contract.csprojAssemblyReference.cache
+C:\Temp\MVC\DDSCMvc2019\PortalService.Contract\obj\Debug\PortalService.Contract.csproj.CoreCompileInputs.cache
+C:\Temp\MVC\DDSCMvc2019\PortalService.Contract\obj\Debug\PortalService.Contract.csproj.CopyComplete
+C:\Temp\MVC\DDSCMvc2019\PortalService.Contract\obj\Debug\PortalService.Contract.dll
+C:\Temp\MVC\DDSCMvc2019\PortalService.Contract\obj\Debug\PortalService.Contract.pdb

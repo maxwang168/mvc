@@ -1,0 +1,192 @@
+﻿@model PortalWeb.Areas.SystemConfig.Models.SysGroupProgramVM
+
+@using (Html.BeginForm("Edit", "SysGroupProgram", FormMethod.Post, new { role = "form", id = "EditBE" }))
+{
+    <table class="main_table" border="1" cellpadding="1" cellspacing="1" style="width:100%;">
+        <thead>
+            <tr>
+                <td colspan="4">
+                    資料編輯
+                </td>
+            </tr>
+        </thead>
+        <tr>
+            <th class="mainLabel">
+                <span class="requiredMark">＊</span>角色群組：
+            </th>
+            <td class="editTable" colspan="3">
+                @Html.DropDownListFor(a => a.EditSysGroup.RoleUuid, Model.RoleList, "請選擇")
+                @Html.ValidationMessageFor(a => a.EditSysGroup.RoleUuid, "", new { id = "lblMsg_role_uuid", @style = "color:red" })
+                @Html.HiddenFor(a => a.EditSysGroup.GroupId, Model.EditSysGroup.GroupId)
+                @Html.HiddenFor(a => a.EditSysGroup.GroupName, Model.EditSysGroup.GroupName)
+                @Html.HiddenFor(a => a.EditSysGroup.OrgId, Model.EditSysGroup.OrgId)
+            </td>
+        </tr>
+        <tr>
+            <th class="mainLabel">
+                <span class="requiredMark">＊</span>管理群組：
+            </th>
+            <td class="editTable" colspan="3">
+                @Html.CheckBoxFor(a => a.EditSysGroup.AdminGroup)
+            </td>
+        </tr>
+        <tr>
+            <th class="mainLabel">
+                狀態：
+            </th>
+            <td class="editTable" colspan="3">
+                @if (Model.EditSysGroup.StatusFlag == "Y")
+                {
+                    @Html.Label("有效")
+                }
+                else if (Model.EditSysGroup.StatusFlag == "N")
+                {
+                    @Html.Label("無效")
+                }
+                else
+                {
+                    @Html.Label(Model.EditSysGroup.StatusFlag)
+                }
+            </td>
+        </tr>
+        @if (Model.IsModify)
+        {
+            <tr>
+                <th class="mainLabel" width="15%">
+                    建立者：
+                </th>
+                <td class="editTable" width="35%">
+                    @Html.Label(Model.EditSysGroup.CreatedByName)
+                    @Html.HiddenFor(a => a.EditSysGroup.CreatedByName, Model.EditSysGroup.CreatedByName)
+                </td>
+                <th class="mainLabel" width="15%">
+                    建立時間：
+                </th>
+                <td class="editTable" width="35%">
+                    @Html.Label(Model.EditSysGroup.CreatedDate.ToString("yyyy/MM/dd HH:mm:ss"))
+                    @Html.HiddenFor(a => a.EditSysGroup.CreatedDate, Model.EditSysGroup.CreatedDate)
+                </td>
+            </tr>
+            <tr>
+                <th class="mainLabel">
+                    異動者：
+                </th>
+                <td class="editTable">
+                    @Html.Label(Model.EditSysGroup.UpdatedByName)
+                    @Html.HiddenFor(a => a.EditSysGroup.UpdatedByName, Model.EditSysGroup.UpdatedByName)
+                </td>
+                <th class="mainLabel">
+                    異動時間：
+                </th>
+                <td class="editTable">
+                    @Html.Label(Model.EditSysGroup.UpdatedDate.ToString("yyyy/MM/dd HH:mm:ss"))
+                    @Html.HiddenFor(a => a.EditSysGroup.UpdatedDate, Model.EditSysGroup.UpdatedDate)
+                </td>
+            </tr>
+        }
+        <tfoot>
+            <tr>
+                <td align="center" colspan="4">
+                    <a href="javascript:$('#EditBE').submit();" class="Ok" onclick="return isConfirm();">儲存</a>&nbsp;&nbsp;
+                    @Html.ActionLink("離開", "Index", null, new { @class = "Exit" })
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+    @Html.HiddenFor(a => a.IsModify, Model.IsModify)
+    @Html.HiddenFor(a => a.EditSysGroup.GroupUuid, Model.EditSysGroup.GroupUuid)
+    <script type="text/javascript">
+        var alertMsg = '@Model.Message';
+        if (alertMsg != '') {
+            alert(alertMsg);
+        }
+
+        /**
+        * Form送出前,client欄位檢查
+        */
+        function isConfirm() {
+            clearMsgLabel();
+            var m_return = true;
+
+            //debugger
+            try {
+                //if ($("#EditSysGroup_OrgUuid").val() == "") {
+                //    $("#lblMsg_org_uuid").text("統一編號 欄位是必要項。");
+                //    m_return = false;
+                //}
+                if ($("#EditSysGroup_RoleUuid").val() == "") {
+                    $("#lblMsg_role_uuid").text("角色 欄位是必要項。");
+                    m_return = false;
+                }
+            }
+            catch (e) {
+                alert(e);
+            }
+
+            return m_return;
+        }
+        /**
+         * 清空驗證span內容值
+        */
+        function clearMsgLabel() {
+
+            var lblMsgObj = $("#EditBE").find('Span[id^="lblMsg_"]').text("");  //即id含lblMsg_的span之text清成空字串
+
+            //for (i = 0; i < lblMsgObj.length; i++) {
+            //    if (lblMsgObj[i].id.indexOf("Msg") > 0 || lblMsgObj[i].id.toLowerCase().indexOf("lblmessage") > 0) {
+            //        lblMsgObj[i].innerHTML = "";
+            //    }
+            //}
+        }
+
+        $(document).ready(function () {
+            //角色變更時
+            $("#EditSysGroup_RoleUuid").change(function () {
+                if ($("#EditSysGroup_RoleUuid").val() != "") {
+                    $("#EditSysGroup_GroupId").val($("#EditSysGroup_RoleUuid :selected").text().split('-')[0]);
+                    $("#EditSysGroup_GroupName").val($("#EditSysGroup_RoleUuid :selected").text().split('-')[1]);
+                }
+                else {
+                    $("#EditSysGroup_GroupId").val("");
+                    $("#EditSysGroup_GroupName").val("");
+                }
+                $.ajax({
+                    url: '@Url.Action("CheckKey", "SysGroupProgram")',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    type: 'POST',
+                    data: JSON.stringify({ p_groupId: $("#EditSysGroup_GroupId").val(), p_groupUuid: $("#EditSysGroup_GroupUuid").val() }), //, p_orgId: $("#EditSysGroup_OrgId").val(), p_groupUuid: $("#EditSysGroup_GroupUuid").val() }),
+                    success: function (int) {
+                        $("#lblMsg_role_uuid").text("");
+                        if (int > 0) {
+                            $("#lblMsg_role_uuid").text("角色重覆! 請重新輸入");
+                        }
+                    },
+                    complete: function (XMLHttpRequest, textStatus) {
+                    },
+                    error: function (XMLHttpRequest, textStatus) {
+                        alert("Error in Get Data for " + $("#EditSysGroup_GroupId").val() + "!!\n\r"
+                            + XMLHttpRequest.status + '-' + textStatus)
+                    }
+                })
+                $.ajax({
+                    url: '@Url.Action("getOrgId", "SysGroupProgram")',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    type: 'POST',
+                    data: JSON.stringify({ p_groupId: $("#EditSysGroup_GroupId").val(), p_groupUuid: $("#EditSysGroup_GroupUuid").val() }), //, p_orgId: $("#EditSysGroup_OrgId").val(), p_groupUuid: $("#EditSysGroup_GroupUuid").val() }),
+                    success: function (orgId) {
+                        $("#EditSysGroup_OrgId").val(orgId);
+                    },
+                    complete: function (XMLHttpRequest, textStatus) {
+                    },
+                    error: function (XMLHttpRequest, textStatus) {
+                        alert("Error in Get Data for " + $("#EditSysGroup_GroupId").val() + "!!\n\r"
+                            + XMLHttpRequest.status + '-' + textStatus)
+                    }
+                })
+            });
+        });
+    </script>
+}
+

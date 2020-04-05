@@ -1,0 +1,11 @@
+C:\Temp\MVC\DDSCMvc2019\CommonLibrary\bin\Debug\CommonLibrary.dll
+C:\Temp\MVC\DDSCMvc2019\CommonLibrary\bin\Debug\CommonLibrary.pdb
+C:\Temp\MVC\DDSCMvc2019\CommonLibrary\bin\Debug\Entity.dll
+C:\Temp\MVC\DDSCMvc2019\CommonLibrary\bin\Debug\log4net.dll
+C:\Temp\MVC\DDSCMvc2019\CommonLibrary\bin\Debug\Entity.pdb
+C:\Temp\MVC\DDSCMvc2019\CommonLibrary\bin\Debug\log4net.xml
+C:\Temp\MVC\DDSCMvc2019\CommonLibrary\obj\Debug\CommonLibrary.csprojAssemblyReference.cache
+C:\Temp\MVC\DDSCMvc2019\CommonLibrary\obj\Debug\CommonLibrary.csproj.CoreCompileInputs.cache
+C:\Temp\MVC\DDSCMvc2019\CommonLibrary\obj\Debug\CommonLibrary.csproj.CopyComplete
+C:\Temp\MVC\DDSCMvc2019\CommonLibrary\obj\Debug\CommonLibrary.dll
+C:\Temp\MVC\DDSCMvc2019\CommonLibrary\obj\Debug\CommonLibrary.pdb

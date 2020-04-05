@@ -1,0 +1,100 @@
+﻿@{
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        settings.Name = "GridView";
+        settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+        settings.Styles.Header.BackColor = System.Drawing.ColorTranslator.FromHtml("#F2F2F2");
+        settings.CallbackRouteValues = new { Controller = "SysGroupProgram", Action = "GridViewPartial" };
+
+        settings.KeyFieldName = "GroupUuid";
+        settings.SettingsPager.PageSizeItemSettings.Visible = true;
+        settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "10", "20", "30" };
+        settings.SettingsPager.FirstPageButton.Visible = true;
+        settings.SettingsPager.LastPageButton.Visible = true;
+        settings.SettingsPager.Visible = true;
+        settings.SettingsPager.Position = System.Web.UI.WebControls.PagerPosition.Top;
+
+        settings.Settings.ShowGroupPanel = false;
+        settings.Settings.ShowFilterRow = false;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+        settings.SettingsAdaptivity.AdaptivityMode = GridViewAdaptivityMode.Off;
+        settings.SettingsAdaptivity.AdaptiveColumnPosition = GridViewAdaptiveColumnPosition.Right;
+        settings.SettingsAdaptivity.AdaptiveDetailColumnCount = 1;
+        settings.SettingsAdaptivity.AllowOnlyOneAdaptiveDetailExpanded = false;
+        settings.SettingsAdaptivity.HideDataCellsAtWindowInnerWidth = 0;
+
+        settings.CommandColumn.Visible = true;
+        settings.CommandColumn.Caption = "功能";
+        settings.CommandColumn.HeaderStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+        settings.CommandColumn.ButtonRenderMode = GridCommandButtonRenderMode.Image;
+        settings.CommandColumn.Width = System.Web.UI.WebControls.Unit.Pixel(200);
+        GridViewCommandColumnCustomButton viewButton = new GridViewCommandColumnCustomButton();
+        viewButton.ID = "viewBtn";
+        viewButton.Image.ToolTip = "檢視";
+        viewButton.Image.Url = Url.Content("~/Content/Images/grid_buttons/Search_16x16.png");
+        viewButton.Index = 0;
+        GridViewCommandColumnCustomButton editButton = new GridViewCommandColumnCustomButton();
+        editButton.ID = "editBtn";
+        editButton.Image.ToolTip = "編輯";
+        editButton.Image.Url = Url.Content("~/Content/Images/grid_buttons/Edit_16x16.png");
+        editButton.Index = 1;
+        GridViewCommandColumnCustomButton delButton = new GridViewCommandColumnCustomButton();
+        delButton.ID = "delBtn";
+        delButton.Image.ToolTip = "刪除";
+        delButton.Image.Url = Url.Content("~/Content/Images/grid_buttons/Delete_16x16.png");
+        delButton.Index = 2;
+        GridViewCommandColumnCustomButton editProgramButton = new GridViewCommandColumnCustomButton();
+        editProgramButton.ID = "editProgramBtn";
+        editProgramButton.Image.ToolTip = "設定功能選單";
+        editProgramButton.Image.Url = Url.Content("~/Content/Images/grid_buttons/workflows.gif");
+        editProgramButton.Index = 3;
+
+        settings.CommandColumn.CustomButtons.Add(viewButton);
+        settings.CommandColumn.CustomButtons.Add(editButton);
+        settings.CommandColumn.CustomButtons.Add(delButton);
+        settings.CommandColumn.CustomButtons.Add(editProgramButton);
+        settings.ClientSideEvents.CustomButtonClick = string.Format("function(s, e) {{ CustomButtonClick(s, e, '{0}'); }}", Url.Action("Edit", "SysGroupProgram"));
+
+
+        settings.Columns.Add("OrgIdName", "統一編號");
+        settings.Columns.Add("GroupIdName", "角色群組");
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "AdminGroup";
+            column.Caption = "管理群組";
+            column.SetDataItemTemplateContent(c =>
+            {
+                if (Convert.ToBoolean(DataBinder.Eval(c.DataItem, "AdminGroup")))
+                {
+                    ViewContext.Writer.Write("是");
+                }
+                else
+                {
+                    ViewContext.Writer.Write("否");
+                }
+            });
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "StatusFlag";
+            column.Caption = "狀態";
+            column.SetDataItemTemplateContent(c =>
+            {
+                if (Convert.ToString(DataBinder.Eval(c.DataItem, "StatusFlag")) == "Y")
+                {
+                    ViewContext.Writer.Write("有效");
+                }
+                else if (Convert.ToString(DataBinder.Eval(c.DataItem, "StatusFlag")) == "N")
+                {
+                    ViewContext.Writer.Write("無效");
+                }
+                else
+                {
+                    ViewContext.Writer.Write(Convert.ToString(DataBinder.Eval(c.DataItem, "StatusFlag")));
+                }
+            });
+        });
+    });
+}
+@grid.Bind(Model.SysGroupList).GetHtml()

@@ -1,0 +1,142 @@
+﻿
+@model PortalWeb.Areas.SystemConfig.Models.SysCodeInfoVM
+
+@using (Html.BeginForm("Index", "SysCodeInfo", FormMethod.Post, new { role = "form", id = "QueryList" }))
+{
+
+<div class="form">
+        <table class="main_table" style="width:100%;">
+            <tr>
+                <th class="mainLabel" width="15%">
+                    群組：
+                </th>
+                <td class="editTable " width="35%">
+                    @Html.DropDownListFor(a => a.SelectedCategory, Model.CategoryList, "請選擇", new {@class = "form-control"})
+                </td>
+                <th class="mainLabel " width="15%">
+                    代碼：
+                </th>
+                <td class="editTable " width="35%">
+                    @Html.EditorFor(a => a.Code, new { htmlAttributes = new { @class = "form-control" }} )
+                </td>
+            </tr>
+            <tr>
+                <th class="mainLabel" width="15%">
+                    子群組：
+                </th>
+                <td class="editTable" width="35%">
+                    @Html.DropDownListFor(a => a.SelectedSubCategory, Model.SubCategory, "請選擇", new { @class = "form-control" })
+                </td>
+                <th class="mainLabel" width="15%">
+                    代碼名稱：
+                </th>
+                <td class="editTable" width="35%">
+                    @Html.EditorFor(a => a.CodeName, Model.CodeName, new { htmlAttributes = new { @class = "form-control" } } )
+                </td>
+            </tr>
+            <tfoot>
+                <tr>
+                    <td align="center" colspan="4">
+                        <a href="javascript:$('#QueryList').submit();" class="Search">查詢</a>&nbsp;&nbsp;
+                        @Html.ActionLink("新增", "Edit", null, new { @class = "Add" })
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+</div>
+    <br />
+    <div id="resultDiv">
+        <table class="mainTable" border="0" cellpadding="1" cellspacing="1" style="width:100%;">
+            <tr>
+                <td>
+                    @if (Model.SysCodeInfoList != null && Model.SysCodeInfoList.Count > 0)
+                    {
+                        @Html.Partial("_GridViewPartial")
+                    }
+                </td>
+            </tr>
+
+        </table>
+    </div>
+
+    <script>
+        var alertMsg = '@Model.Message';
+        if (alertMsg != '') {
+            alert(alertMsg);
+            @(Model.Message = string.Empty)
+        }
+
+        function CustomButtonClick(s, e, url) {
+            var key = s.GetRowKey(e.visibleIndex);
+            if (e.buttonID === "editBtn") {
+                var destUrl = '@Url.Action("Edit", "SysCodeInfo", new {id = "REPLACEME" })';
+                window.location.href = destUrl.replace('REPLACEME', key);
+            }
+            else if (e.buttonID === "viewBtn") {
+                var dest = '@Url.Action("Show", "SysCodeInfo", new {id = "REPLACEME" })';
+                window.location.href = dest.replace('REPLACEME', key);
+            }
+            else if (e.buttonID === "delBtn") {
+                if (!confirm("確定是否刪除?")) {
+                    return false;
+                }
+
+                $('#hidId').val(key);
+                $('#formDelete').submit();
+
+            }
+        }
+        $(document).ready(function () {
+            //$("#State").prop("disabled", true);
+            $("#SelectedCategory").change(function () {
+                if ($("#SelectedCategory").val() != "" && $("input[name=Type]:checked").val() != "R") {
+                    var CountryOptions = {};
+                    CountryOptions.url = '@Url.Action("SubGroup", "SysCodeInfo")';
+                    CountryOptions.type = "POST";
+                    CountryOptions.data = JSON.stringify({ p_cate: $("#SelectedCategory").val() });
+                    CountryOptions.datatype = "json";
+                    CountryOptions.contentType = "application/json";
+                    CountryOptions.success = function (StatesList) {
+                        $("#SelectedSubCategory").empty();
+                        $("#SelectedSubCategory").append("<option value=''>請選擇</option>");
+                        for (var i = 0; i < StatesList.length; i++) {
+                            $("#SelectedSubCategory").append("<option value=\"" + StatesList[i][1] + "|" + StatesList[i][2] + "\">" + StatesList[i][0] + "</option>");
+                        }
+                        $("#SelectedSubCategory").prop("disabled", false);
+                    };
+                    CountryOptions.error = function () { alert("Error in Getting States!!"); };
+                    $.ajax(CountryOptions);
+                }
+                else {
+                    $("#SelectedSubCategory").empty();
+                    $("#SelectedSubCategory").append("<option value=''>請選擇</option>");
+                }
+            });
+        });
+
+        if ($("input[name=Type]:checked").val() == "R") {
+            $("#SelectedSubCategory").empty();
+            $("#SelectedSubCategory").append("<option value=''>請選擇</option>");
+            $("#SelectedSubCategory").prop("disabled", true);
+        }
+
+        $("input[name=Type]:radio").change(function () {
+            $("#SelectedCategory").val("");
+            $("#SelectedSubCategory").val("");
+            $("#SelectedSubCategory").empty();
+            $("#SelectedSubCategory").append("<option value=''>請選擇</option>");
+            if ($("input[name=Type]:checked").val() == "R") {
+                $("#SelectedCategory").prop("disabled", false);
+                $("#SelectedSubCategory").prop("disabled", true);
+            }
+            else {
+                $("#SelectedCategory").prop("disabled", false);
+                $("#SelectedSubCategory").prop("disabled", false);
+            }
+        });
+    </script>
+    }
+    <form id="formDelete" action="@Url.Action("Delete")" method="post" style="display: none; ">
+        <input type="hidden" id="hidId" name="id" />
+        <input type="hidden" id="hidEdType" name="edType" />
+    </form>

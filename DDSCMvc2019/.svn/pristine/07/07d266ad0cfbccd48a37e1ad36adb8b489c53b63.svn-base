@@ -1,0 +1,103 @@
+﻿<table style="width: 100%" border="0" cellsapcesing="0" cellpadding="0">
+    <tr class="pageHeader">
+        <td>
+            單位：@Html.Label(((Entity.UserData)Session["UserData"]).UserInfo.org_name)
+            &nbsp;|&nbsp;使用者：@Html.Label(((Entity.UserData)Session["UserData"]).UserInfo.user_name)
+            &nbsp;|&nbsp;角色群組：@Html.Label(((Entity.UserData)Session["UserData"]).UserInfo.role_name)
+        </td>
+        <td width="20%" align="right">
+            @Html.ActionLink("回首頁", "GoHome", "Home", new { area = "", id = "" }, new { @class = "topBtn" })
+            &nbsp;|&nbsp;@*輔助說明&nbsp;|&nbsp;*@
+            @Html.ActionLink("登出", "Logout", "Account", new { area = "", id = "" }, new { @class = "topBtn" })
+            &nbsp;&nbsp;
+        </td>
+    </tr>
+</table>
+<div>
+    <div class="DDSCTRTitile" style="display: flex;">
+        <div class="VerticalPosition" style="font-family:微軟正黑體;font-size:20px;color:#ffffff;padding-left:10px;">
+            <!--#07594E-->
+            <input type="image" src="~/Content/Images/icons/Menu.png" alt="Menu" id="btnMenu" width="25" height="30" data-jq-dropdown="#jq-dropdown-3">
+            <font style="vertical-align:super;margin-left:10px;">DEMO平台</font>
+        </div>
+        <div class="VerticalPosition" style="margin-left: auto;padding-right:15px;">
+            <div style="display:flex;margin-right:10px;margin-top:15px;">
+                @{
+                    System.Xml.XmlDocument programXml = new System.Xml.XmlDocument();
+                    programXml.LoadXml(((Entity.UserData)Session["UserData"]).ProgramXml);
+                    System.Xml.XmlNodeList systemList = programXml.SelectSingleNode("/MAIN").ChildNodes;
+                    if (systemList.Count > 1)
+                    {
+                        for (int i = 0; i < systemList.Count; i++)
+                        {
+                            string selected = Session["selectedId"] == null ? systemList[0].Name : Session["selectedId"].ToString();
+
+                            
+                            @Html.ActionLink(systemList[i].Attributes["Name"].Value, "InternalIndex", "Home", new { area = "", id = systemList[i].Name }, new { id = systemList[i].Name, @class = selected == systemList[i].Name ? "btn btn-info" : "btn", style = "font-weight:bold;font-size:16px;" });
+                            
+                        }
+                    }
+
+                    @Html.Hidden("prog_code", this.ViewContext.RouteData.Values["controller"])
+                    @Html.Hidden("prog_action", this.ViewContext.RouteData.Values["action"])
+                }
+            </div>
+            <input style="margin-top:5px;margin-bottom:5px;" type="image" src="~/Content/Images/top/logo.gif" alt="Menu">
+        </div>
+    </div>
+</div>
+<div style="padding:0px;background-color:#005aa0"></div>
+
+<style>
+    .VerticalPosition {
+        display: flex;
+        align-items: center;
+    }
+
+    .DDSCTRTitile {
+        background-repeat: repeat-x;
+        background-size: 50% auto;
+        /*background-color: rgb(243,243,243);*/
+        background-color: #636e72; /* bootstrapprimary #428BCA  #f3f3f3;*/
+        /*background-image: url('../Content/Images/top/CTBC_title_bg.png');*/
+    }
+
+    tr td.selected {
+        /*width:100px;*/ /*border: 0px solid #458Bff;*/
+        font-family: 微軟正黑體;
+        font-size: 12px;
+        font-weight: bold;
+        text-decoration: none;
+        margin: 5px;
+        padding: 5px; /*text-align: right; 	background: #1E90FF;*/ /*#D4D4D4;*/
+        color: red;
+    }
+
+    .selectedList {
+        padding: 30px 20px 23px 20px;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .selectedName {
+        border: 3px solid #005aa0;
+        background-color: #005aa0;
+        color: white;
+        /*border-radius:0px;*/
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+
+        .selectedName:hover {
+            color: white;
+        }
+</style>
+@*<script type="text/javascript" src=@Url.Content("~/Scripts/jquery-1.12.4.min.js")></script>
+<script type="text/javascript" src=@Url.Content("~/Scripts/bootstrap.min.js")></script>
+<script type="text/javascript" src=@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")></script>*@
+
+
+<script type="text/javascript">
+
+
+</script>

@@ -1,0 +1,11 @@
+@{
+    var userData = HttpContext.Current.Session["UserData"];
+    if (userData == null)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_lightLayout.cshtml";
+    }
+}

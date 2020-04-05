@@ -1,0 +1,847 @@
+﻿/*--------------------------------------------------------------------------------------------------------*/
+/*title 包含狀態及步驟*/
+/*沒有圖案的title,給步驟用*/
+.page_title
+{
+    padding: 11px 0 0 10px;
+    color: #666;
+    height: 24px;
+    margin: 0px 0px 10px 0px;
+    border-bottom: 1px solid #ccc;
+    font-family: "微軟正黑體" , Arial, Helvetica, sans-serif, "新細明體";
+    font-size: medium;
+}
+/*有icon的title*/
+.page_title_icon
+{
+    padding: 5px 0 0 35px;
+    background: url(/Content/Images/icons/func_item_b.png) no-repeat 0px 0;
+    color: #666;
+    height: 35px;
+    margin: 0px 0px 10px 0px;
+    border-bottom: 1px solid #ccc;
+    font-family: "微軟正黑體" , Arial, Helvetica, sans-serif, "新細明體";
+    font-size: medium;
+}
+.page_title_txt
+{
+    font-weight: bold;
+    float: left;
+    letter-spacing: 1px;
+}
+/*步驟*/
+.step_now_blue, .step_pass_blue
+{
+    font-family: "微軟正黑體" ,Arial, Century, "新細明體";
+    font-weight: bold;
+    letter-spacing: 1px;
+    padding: 0 0 0 18px;
+    margin-right: 8px;
+}
+.step_now_blue
+{
+    background: url(/SiteCollectionImages/EI/App/MemberApply/step_blue.png) no-repeat left -5px;
+    color: #588BAF;
+}
+.step_pass_blue
+{
+    background: url(/SiteCollectionImages/EI/App/MemberApply/step_gray.png) no-repeat left -5px;
+    color: #ccc;
+}
+
+.btn_blue
+{
+    background: #C0E6D2;
+    border: 0;
+    cursor: pointer;
+    padding: 8px 25px;
+    font-size: 12px;
+    color: #000;
+    box-shadow: 2px 2px 3px rgba(0,0,0,0.3); /* 陰影*/
+    border-radius: 10px; /* 圓角 */
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 5px;
+}
+
+.NoteTable
+{
+    border-collapse: collapse;
+    width: 95%;
+    margin-left: 4%;
+    border: 1px dashed #f299c8;
+    letter-spacing: 1px; /*支援chrome,safari*/
+    -webkit-border-top-left-radius: 6px; /*支援firebox,flock*/
+    -webkit-border-top-right-radius: 6px;
+    -webkit-border-bottom-left-radius: 6px;
+    -webkit-border-bottom-right-radius: 6px;
+    -moz-border-radius-topleft: 6px; /*Normal*/
+    -moz-border-radius-topright: 6px;
+    -moz-border-radius-bottomleft: 6px;
+    -moz-border-radius-bottomright: 6px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    -webkit-box-shadow: #6DB45B 2px 2px 2px; /*陰影for Google Chrome、Safari*/
+    -moz-box-shadow: #6DB45B 2px 2px 2px; /*陰影for Firefox*/
+    box-shadow: #6DB45B 2px 2px 2px; /*陰影for IE*/
+}
+.NoteTable thead tr td
+{
+    background-color: #f6d5e6;
+    height: 20px;
+    font-size: 16px;
+    font-family: "微軟正黑體" , "新細明體" , Century, Arial;
+    font-weight: bold;
+    padding-left: 5px;
+}
+.NoteTable tbody tr td
+{
+    height: 18px;
+    font-size: 16px;
+    background-color: #fff; /*color:#fbb4b1;*/
+    font-family: "微軟正黑體" , "新細明體" , Century, Arial;
+    border: 1px #fbd5b1;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+.main_table
+{
+    border-collapse: collapse;
+    width: 97%;
+    /*margin-left: 1.5%;*/ /*4%; */ /*border:1px solid #c0e6d2;*/
+    /*margin-right: 1.5%;*/ /*4%; */ /*border:1px solid #c0e6d2;*/
+    border: 1px solid #A7C9D9; /*background-color:#e9faf8;*/
+    background-color: #ffffff;
+}
+
+.main_table tbody tr
+{
+    /*background-color:#e9faf8;
+    background-color: #ffffff;*/
+    line-height : 20px;
+}
+.main_table td
+{
+    /*background-color: #FFF;     padding-right: 20px;*/ /*text-align: left;*/
+    font-size: 16px;
+    font-family: "微軟正黑體" ,Arial, Helvetica, sans-serif;
+    color: #1f3964; /*font-weight: bold; */
+    border-top: 1px solid #A7C9D9;
+    border-right: 1px solid #A7C9D9;
+    padding: 5px 10px 5px 10px;
+}
+.main_table thead tr td
+{
+    /*background:url(/SiteCollectionImages/EI/Web/bg_th2.jpg) repeat-x bottom #2bb0b0; */
+    background-color: #C7F0FF; /*margin-left: 20px;*/
+    height: 16px;
+    padding: 5px 0;
+    color: #1f3964;
+    text-align: center;
+    font-size: 16px;
+    font-family: "微軟正黑體" , "新細明體" , Century, Arial;
+    letter-spacing: 1px; /*支援chrome,safari*/
+    
+}
+.main_table tbody th
+{
+    background-color: #E1F5FA; /*padding-right: 20px;*/
+    text-align: right;
+    font-size: 16px;
+    font-family: "微軟正黑體" ,Arial, Helvetica, sans-serif;
+    color: #1f3964;
+    font-weight: bold;
+    border-top: 1px solid #A7C9D9;
+    border-right: 1px solid #A7C9D9;
+    padding: 10px;
+}
+
+.main_table a
+{
+    color: #1a65fb;
+    font-weight: bold;
+    text-decoration: none;
+}
+.main_table a:hover
+{
+    color: #ff2698;
+    font-weight: bold;
+    text-decoration: none;
+}
+.main_table tfoot tr td
+{
+    background-color: #e7e7e5;
+    text-align: center;
+    border: 1px solid #A7C9D9;
+}
+
+/*GridView Style*/
+.GridViewStyle
+{
+    width: 97%;
+    /*margin-left: 1.5%;
+    margin-right: 1.5%;*/
+    font-family: Arial, Sans-Serif;
+    font-size: large;
+    table-layout: auto;
+    border-collapse: collapse;
+    border: #A7C9D9 1px solid;
+}
+.HeaderStyle
+{
+    /*background-color:#c0e6d2;	     background-color:#E1F5FA;*/
+    /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#43AEFF',endColorstr='#FFFFFF',GradientType=1 );
+    background-color: #CDE0E9;
+    color: #666;
+    font-size: 12px;
+    height: 25px;
+    vertical-align: middle;
+    font-weight: bold;
+    font-family: "微軟正黑體" , Arial, Helvetica, sans-serif, "新細明體";
+    border: 1px solid #cccccc;*/
+    background-color: #C7F0FF;
+    height: 16px;
+    padding: 5px 0;
+    color: #1f3964;
+    text-align: center;
+    font-size: 16px;
+    font-family: "微軟正黑體" , "新細明體" , Century, Arial;
+    letter-spacing: 1px; /*支援chrome,safari*/
+}
+.DropDownStyle
+{
+}
+.OddRowStyle td
+{
+    /*background-color:#E8E8E8;  */
+    background-color: #F4F6F9;
+    vertical-align: middle;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 13px;
+    font-family: "微軟正黑體" , Arial, Helvetica, sans-serif, "新細明體";
+    border: 0px;
+}
+.RowStyle td
+{
+    vertical-align: middle;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 13px;
+    font-family: "微軟正黑體" , Arial, Helvetica, sans-serif, "新細明體";
+    border: 0px;
+}
+.RowStyle_a td
+{
+    vertical-align: middle;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 14px;
+    font-family: "微軟正黑體" , Arial, Helvetica, sans-serif, "新細明體";
+    border: 0px;
+}
+/*--------------------------------------------------------------------------------------------------------*/
+/*小秘書*/
+/*--------------------------------------------------------------------------------------------------------*/
+.AssistantGrid
+{
+    /*background: linear-gradient(to bottom, #d1dffc 0%,#FFFFFF 100%);     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d1dffc',endColorstr='#FFFFFF',GradientType=0 );*/
+    font: #303030;
+    font-family: Arial, Sans-Serif;
+    table-layout: auto;
+    border-collapse: collapse;
+    border: #bfbfbf 0px solid;
+}
+.AssistantGrid tbody th
+{
+    border: 0px;
+}
+.AssistantGridHeader
+{
+    background: #d1dffc;
+    width: 500px;
+    margin-left: 20px;
+    height: 25px;
+    color: #2b4f8b;
+    text-align: left;
+    vertical-align: middle;
+    font-size: 14px; /*font-weight: bold;*/
+    font-family: "微軟正黑體" , Arial, Helvetica, sans-serif, "新細明體";
+    letter-spacing: 1px; /*支援chrome,safari*/
+    -webkit-border-top-left-radius: 6px;
+    -webkit-border-top-right-radius: 6px; /*支援firebox,flock*/
+    -moz-border-radius-topleft: 6px;
+    -moz-border-radius-topright: 6px; /*Normal*/
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border: 0px;
+}
+.AssistantRow td
+{
+    background-color: #FFF;
+    vertical-align: middle;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 14px;
+    font-family: "微軟正黑體" , Arial, Helvetica, sans-serif, "新細明體";
+    border: 0px;
+    border-bottom: 1px #bfbfbf;
+}
+.AssistantOddRow td
+{
+    background-color: #F4F6F9;
+    vertical-align: middle;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 14px;
+    font-family: "微軟正黑體" , Arial, Helvetica, sans-serif, "新細明體";
+    border: 0px;
+    border-bottom: 1px #bfbfbf;
+}
+/*--------------------------------------------------------------------------------------------------------*/
+
+.table_public
+{
+    border-collapse: collapse;
+    width: 95%;
+    margin-left: 4%;
+    border: 0px solid #c0e6d2;
+    background-color: #e9faf8;
+}
+.table_public tbody tr
+{
+    background-color: #e9faf8;
+}
+.table_public thead tr td
+{
+    /*background:url(/SiteCollectionImages/EI/Web/bg_th2.jpg) repeat-x bottom #2bb0b0;*/
+    background-color: #1B84C9;
+    margin-left: 20px;
+    height: 16px;
+    padding: 5px 0;
+    color: #fff;
+    text-align: center;
+    font-size: 16px;
+    font-family: "微軟正黑體" , "新細明體" , Century, Arial;
+    letter-spacing: 1px;
+}
+.table_public td
+{
+    font-size: 14px;
+    line-height: 1.4em;
+    font-family: "微軟正黑體" ,Arial, Helvetica, sans-serif;
+    color: #1f3964;
+    padding: 0px 10px 5px 10px; /*border-top: 0px solid #87c1c3;*/
+    border-top: 0px solid #A7C9D9;
+    border-right: 0px solid #c0e6d2;
+}
+/*--------------------------------------------------------------------------------------------------------*/
+
+
+/*--------------------------------------------------------------------------------------------------------*/
+/*按鈕*/
+.tableBtn
+{
+    background: url(/SiteCollectionImages/EI/Web/btn_03.png) no-repeat 4px 3px;
+    width: 120px;
+    height: 35px;
+    border: 0;
+    cursor: pointer;
+}
+.tableBtn2
+{
+    background: url(/SiteCollectionImages/EI/Web/btn_07.png) no-repeat 3px 3px;
+    width: 70px;
+    height: 35px;
+    border: 0;
+    cursor: pointer;
+    margin-left: 10px;
+}
+.btnBlack
+{
+    text-align: center;
+    margin-top: 20px;
+}
+
+input.btnAllUse
+{
+    background: #63e8d7;
+    border: 0;
+    cursor: pointer;
+    padding: 8px 25px;
+    font-size: 12px;
+    color: #000;
+    box-shadow: 2px 2px 3px rgba(0,0,0,0.3); /* 陰影*/
+    border-radius: 5px; /* 圓角 */
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 5px;
+}
+
+input.btnAllUse:hover
+{
+    background: #399186;
+    border: 0;
+    cursor: pointer;
+    padding: 8px 25px;
+    font-size: 12px;
+    color: #FFF;
+    box-shadow: 2px 2px 3px rgba(0,0,0,0.3); /* 陰影*/
+    border-radius: 5px; /* 圓角 */
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+
+/*--------------------------------------------------------------------------------------------------------*/
+/* 表單文字 */
+input.textBox
+{
+    border-radius: 4px; /* 圓角 */
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    background-color: #FFF;
+    margin-bottom: 5px;
+    border: 1px solid #0f7287;
+    height: 20px;
+}
+
+/*--------------------------------------------------------------------------------------------------------*/
+/*:::::頁籤:::::*/
+/*Body*/
+.Tab .ajax__tab_body
+{
+    border: 1px solid #098786;
+    padding-top: 10px;
+}
+/*點到時(左,中,右)*/
+.Tab .ajax__tab_active .ajax__tab_tab
+{
+    color: #ffffff;
+    background-color: #098786;
+    height: 23px;
+    padding-right: 6px;
+}
+.Tab .ajax__tab_active .ajax__tab_inner
+{
+    color: #ffffff;
+    background-color: #098786;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+.Tab .ajax__tab_active .ajax__tab_outer
+{
+    color: #ffffff;
+    background-color: #098786;
+    padding-right: 6px;
+}
+/*滑到時(左,中,右)
+.Tab .ajax__tab_hover .ajax__tab_tab
+{
+    color: #000000;
+    background-color: #EAEAEA;
+    height:20px;
+}
+.Tab .ajax__tab_hover .ajax__tab_inner
+{
+    color: #000000;
+    background-color: #EAEAEA;
+    padding-left:10px;
+}
+.Tab .ajax__tab_hover .ajax__tab_outer
+{
+    color: #000000;
+    background-color: #EAEAEA;
+    padding-right:6px;
+}*/
+/*移開時(左,中,右)*/
+.Tab .ajax__tab_tab
+{
+    color: #666666;
+    background-color: #EAEAEA;
+    height: 20px;
+}
+.Tab .ajax__tab_inner
+{
+    color: #666666;
+    background-color: #EAEAEA;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+.Tab .ajax__tab_outer
+{
+    color: #666666;
+    background-color: #EAEAEA;
+    padding-right: 6px;
+    margin-right: 2px;
+}
+
+.GridTable
+{
+    border-collapse: collapse;
+    width: 97%;
+    /*margin-left: 1.5%;
+    margin-right: 1.5%;*/
+    border: 1px #A7C9D9 solid;
+}
+.GridTable td
+{
+    border: 0px solid #A7C9D9;
+}
+.GridTable thead tr td
+{
+    /*background-color: #C7F0FF;*/
+    height: 16px;
+    padding: 5px 0;
+    color: #1f3964;
+    text-align: center;
+    font-size: 16px;
+    font-family: "微軟正黑體" , "新細明體" , Century, Arial;
+    letter-spacing: 1px; /*支援chrome,safari*/
+    -webkit-border-top-left-radius: 6px;
+    -webkit-border-top-right-radius: 6px; /*支援firebox,flock*/
+    -moz-border-radius-topleft: 6px;
+    -moz-border-radius-topright: 6px; /*Normal*/
+    /*border-top-left-radius: 6px;
+    border-top-right-radius: 6px;*/
+}
+.GridTable tbody th
+{
+    background-color: #E1F5FA;
+    text-align: center;
+    font-size: 14px;
+    font-family: "微軟正黑體" ,Arial, Helvetica, sans-serif;
+    color: #1f3964;
+    font-weight: bold;
+    border: 0px solid #E1F5FA;
+    padding: 5px;
+}
+.GridTable tfoot tr td
+{
+    background-color: #e7e7e5;
+    text-align: center;
+    border: 1px solid #A7C9D9;
+}
+/*TD中的DataGrid*/
+.GridTableInTD
+{
+    border-collapse: collapse;
+    width: 100%;
+    margin-left: 0px;
+    border: 1px #A7C9D9 solid;
+}
+.GridTableInTD td
+{
+    border: 0px solid #A7C9D9;
+}
+.GridTableInTD thead tr td
+{
+    /*background-color: #C7F0FF;*/
+    height: 16px;
+    color: #1f3964;
+    text-align: center;
+    font-size: 16px;
+    font-family: "微軟正黑體" , "新細明體" , Century, Arial;
+    letter-spacing: 1px; /*支援chrome,safari*/
+    -webkit-border-top-left-radius: 6px;
+    -webkit-border-top-right-radius: 6px; /*支援firebox,flock*/
+    -moz-border-radius-topleft: 6px;
+    -moz-border-radius-topright: 6px; /*Normal*/
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+.GridTableInTD tbody th
+{
+    /*background-color: #E1F5FA;*/
+    text-align: center;
+    font-size: 14px;
+    font-family: "微軟正黑體" ,Arial, Helvetica, sans-serif;
+    color: #1f3964;
+    font-weight: bold;
+    border: 0px solid #E1F5FA;
+    padding: 5px;
+    vertical-align:top;
+}
+.subTable
+{
+    /*border-collapse: collapse;
+    width: 95%;
+    margin-left: 4%;
+    border: 0px;*/
+    border: 0px;
+}
+.subTable td
+{
+    border: 0px;
+}
+.subTable thead tr td
+{
+    border: 0px;
+}
+.subTable tbody th
+{
+    border: 0px;
+}
+/*RadioButtonList Layout=Table的套用樣式*/
+.radioTable
+{
+    width: 100%;
+    border: 0px;
+    font-size: medium;
+}
+.radioTable td
+{
+    border: 0px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+.radioTable thead tr td
+{
+    border: 0px;
+}
+.radioTable tbody th
+{
+    border: 0px;
+}
+.radioTable table
+{
+    border: none;
+}
+/*必填註記*/
+.requiredMark
+{
+    color: Red;
+    font: ARIAL;
+    font-size: large;
+}
+
+/*必填*/
+.requiredEdit
+{
+    background-color: #FFFFDB; /*#FFC5D7*/
+    color: black;
+    font: ARIAL;
+    font-size: large;
+}
+
+/*必填-難字*/
+.requiredEditAsFont
+{
+    background-color: #FFFFDB; /*#FFC5D7*/
+    color: black;
+    font-family: MYFONT1 !important;
+    font-size: large;
+}
+
+/*可編輯*/
+.enabledEdit
+{
+    background-color: #fff; /*#FFFFDB*/
+    color: black;
+    font: ARIAL;
+    font-size: large;
+}
+
+/*可編輯-難字*/
+.enabledEditAsFont
+{
+    background-color: #fff; /*#FFFFDB*/
+    color: black;
+    font-family: MYFONT1 !important;
+    /*font-size: large;*/
+}
+
+/*不可編輯*/
+.disabledEdit
+{
+    background-color: #EEF0F1;
+    color: black;
+    font: ARIAL;
+    /*font-size: large;*/
+}
+
+/*不可編輯-難字*/
+.disabledEditAsFont
+{
+    background-color: #EEF0F1;
+    color: black;
+    font-family: MYFONT1 !important;
+    /*font-size: large;*/
+}
+
+/*關鍵字*/
+.keyWords
+{
+    color: Red;
+}
+
+/*一般顯示-難字*/
+.lableAsFont
+{
+    font-family: MYFONT1 !important;
+}
+
+.func_area
+{
+    background-color: #e9faf8;
+    border-collapse: collapse;
+    width: 95%;
+    margin-left: 4%;
+    border-style: solid;
+    border-width: 1px;
+    border-color: Silver; /*text-align:left;*/ /* IE7 IE8 IE9 */
+    text-align: /**/ left; /* IE6 */
+}
+
+/* ----  ComboBox Auto Complete Start ---- */
+.custom-combobox
+{
+    position: relative;
+    display: inline-block;
+}
+
+.custom-combobox-toggle
+{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin-left: -1px;
+    padding: 0; /* support: IE7 */
+    _height: 1.7em;
+    _top: 0.1em;
+}
+
+.custom-combobox-input
+{
+    margin: 0;
+    padding: 0.3em;
+}
+
+/*浮水印*/
+.watermarked
+{
+    font-style: italic;
+    color: #ACA899;
+}
+
+/* ----  ComboBox Auto Complete End ---- */
+
+
+/*隱藏DIV*/
+.divHidden
+{
+    visibility: block;
+    line-height: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+
+.funcAction
+{
+    color: #C20C0C;
+    font-size: medium;
+    letter-spacing: 1px;
+}
+
+/*--------------------------------------------------------------------------------------------------------*/
+/*麵包屑導覽列*/
+/*--------------------------------------------------------------------------------------------------------*/
+#Breadcrumbs
+{
+    font-size: medium;
+    width: 350px;
+    color: #999;
+    letter-spacing: 1px;
+    margin-right: 10px;
+    height: 24px;
+    text-align: right;
+    float: right;
+    font-family: Arial,Century, "新細明體";
+}
+#Breadcrumbs a:link, #Breadcrumbs a:visited
+{
+    font-size: medium;
+    color: #ffbf00;
+    text-decoration: none;
+}
+#Breadcrumbs a:hover
+{
+    font-size: medium;
+    color: #f90;
+    text-decoration: none;
+}
+#Breadcrumbs span
+{
+    font-size: medium;
+    color: #5b5a5a;
+}
+
+.main_table_title
+{
+    background-color: #C7F0FF;
+    height: 16px;
+    text-align: center;
+    font-size: 16px;
+}
+.thead_left
+{
+    /*background:url(/SiteCollectionImages/EI/Web/bg_th2.jpg) repeat-x bottom #2bb0b0; */
+    background-color: #C7F0FF; /*margin-left: 20px;*/
+    height: 16px;
+    padding: 5px 0;
+    color: #1f3964;
+    text-align: left;
+    font-size: 16px;
+    font-family: "微軟正黑體" , "新細明體" , Century, Arial;
+    letter-spacing: 1px; /*支援chrome,safari*/
+    -webkit-border-top-left-radius: 6px;
+    -webkit-border-top-right-radius: 6px; /*支援firebox,flock*/
+    -moz-border-radius-topleft: 6px;
+    -moz-border-radius-topright: 6px; /*Normal*/
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
+.th_left
+{
+    /*background:url(/SiteCollectionImages/EI/Web/bg_th2.jpg) repeat-x bottom #2bb0b0; */
+    background-color: #E1F5FA; /*margin-left: 20px;*/
+    height: 16px;
+    padding: 5px 0;
+    color: #1f3964;
+    text-align: left;
+    font-size: 16px;
+    font-family: "微軟正黑體" , "新細明體" , Century, Arial;
+    letter-spacing: 1px; /*支援chrome,safari*/
+    -webkit-border-top-left-radius: 6px;
+    -webkit-border-top-right-radius: 6px; /*支援firebox,flock*/
+    -moz-border-radius-topleft: 6px;
+    -moz-border-radius-topright: 6px; /*Normal*/
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
+.divGridView
+{
+    border-collapse: collapse;
+    width: 97%;
+    /*margin-left: 1.5%;*/ /*4%; */ /*border:1px solid #c0e6d2;*/
+    /*margin-right: 1.5%;*/ /*4%; */ /*border:1px solid #c0e6d2;*/
+    border: 1px solid #A7C9D9; /*background-color:#e9faf8;*/
+    background-color: #ffffff;
+}
+.divGridViewTitle
+{
+    background-color: #C7F0FF; /*margin-left: 20px;*/
+    height: 20px;
+    padding: 5px 0;
+    color: #1f3964;
+    text-align: center;
+    font-size: large;
+    font-family: "微軟正黑體" , "新細明體" , Century, Arial;
+    letter-spacing: 1px; /*支援chrome,safari*/    
+}

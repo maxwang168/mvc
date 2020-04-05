@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>@ViewBag.Title</title>
+        <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+        <link href="@Url.Content("~/Content/DDSC.css")" rel="stylesheet" type="text/css" />
+        <link href="@Url.Content("~/Content/gray_style.css")" rel="stylesheet" type="text/css" />
+
+        <link href="@Url.Content("~/Content/Bootstrap.min.css")" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src=@Url.Content("~/Scripts/jquery-1.12.4.min.js")></script>
+        <script type="text/javascript" src=@Url.Content("~/Scripts/bootstrap.min.js")></script>
+        <script type="text/javascript" src=@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")></script>
+
+        @Html.DevExpress().GetStyleSheets(
+            new StyleSheet { ExtensionSuite = ExtensionSuite.NavigationAndLayout },
+            new StyleSheet { ExtensionSuite = ExtensionSuite.Editors },
+            //new StyleSheet { ExtensionSuite = ExtensionSuite.Scheduler },
+            new StyleSheet { ExtensionSuite = ExtensionSuite.GridView }
+            )
+        @Html.DevExpress().GetScripts(
+            //new Script { ExtensionSuite = ExtensionSuite.NavigationAndLayout },
+            new Script { ExtensionSuite = ExtensionSuite.Editors },
+            //new Script { ExtensionSuite = ExtensionSuite.Scheduler },
+            new Script { ExtensionSuite = ExtensionSuite.GridView }
+            )
+        <script src="@Url.Content("~/Scripts/jquery.blockUI.js")"></script>
+        <script type="text/javascript">
+            var g_IsInternet = '@ViewBag.IsInternet';
+        </script>
+        <script src="@Url.Content("~/Scripts/ddsc.js")"></script>
+    </head>
+    <body>
+        <div id="loading" class="loading"></div>
+        @Html.DevExpress().Splitter(settings =>
+        {
+            settings.Name = "MainSplitter";
+            settings.AllowResize = false;
+            settings.Orientation = Orientation.Vertical;
+            settings.FullscreenMode = true;
+            settings.SeparatorVisible = false;
+            settings.Styles.Pane.Border.BorderWidth = Unit.Pixel(0);
+            settings.Styles.Pane.Paddings.Padding = Unit.Pixel(0);
+
+            settings.Panes.Add(pane =>
+            {
+                pane.Name = "Header";
+                pane.AutoHeight = true;
+                pane.PaneStyle.BorderBottom.BorderWidth = Unit.Pixel(0);
+                pane.PaneStyle.CssClass = "headerPane";
+                pane.SetContent(() =>
+                {
+                    Html.RenderPartial("HeaderPartialView");
+                });
+            });
+
+            settings.Panes.Add(pane =>
+            {
+                pane.Name = "Content";
+                pane.PaneStyle.CssClass = "mainContentPane";
+                pane.ScrollBars = ScrollBars.Auto;  //2017/03/20因改使用lightLayout加入,但如是用mainLayout時,要移除之
+                pane.MinSize = Unit.Pixel(375);
+                pane.PaneStyle.BackColor = System.Drawing.Color.White;
+                pane.PaneStyle.BorderBottom.BorderWidth = Unit.Pixel(0);
+                pane.SetContent(RenderBody().ToHtmlString());
+            });
+
+            settings.ClientSideEvents.Init = "function(s, e) { window.setTimeout(function () {s.GetMainElement().style.visibility = \"visible\";document.getElementById('loading').style.display='none';}, 0);}";
+            settings.Style.Add(HtmlTextWriterStyle.Visibility, "hidden");
+
+        }).GetHtml()
+        @RenderSection("scripts", required: false)
+
+        <script>
+            if (top != self) { top.location = self.location; }
+            var countDownDate = new Date();
+            //以現在時間加上20分鐘作為自動登出的倒數基準
+            countDownDate.setMinutes(countDownDate.getMinutes() + 20);
+
+            // Update the count down every 1 second
+            var x = setInterval(function () {
+                // Get todays date and time
+                var now = new Date().getTime();
+                // Find the distance between now an the count down date
+                var distance = countDownDate - now;
+                // Time calculations for days, hours, minutes and seconds
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                // If the count down is finished, write some text
+                if (distance < 0) {
+                    //停止觸發setInterval的funciton
+                    clearInterval(x);
+                    alert("操作逾時,將自動登出!");
+                    location.href = '@Url.Action("Logout", "Account", new { area = "" })';
+                }
+            }, 1000);
+
+            $("form").submit(function () {
+                //TODO: 暫時mark，因為submit若是target=_blank會造成本來的頁面永久顯示loading。
+                //document.getElementById('loading').style.display = 'block';
+            });
+
+            $(function () {
+                //全網站form裡的欄位自動完成功能off。
+                $('form').attr('autocomplete', 'off');
+            });
+        </script>
+    </body>
+</html>

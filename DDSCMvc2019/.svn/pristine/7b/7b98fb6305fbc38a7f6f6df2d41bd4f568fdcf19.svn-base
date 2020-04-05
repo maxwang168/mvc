@@ -1,0 +1,129 @@
+﻿@model PortalWeb.Areas.SystemConfig.Models.SysProgramVM
+
+@using (Html.BeginForm("Index", "SysProgram", FormMethod.Post, new { role = "form", id = "QueryList" }))
+{
+    <table border="1" cellpadding="1" cellspacing="1" class="main_table" style="width:100%;">
+        <tr>
+            <th class="mainLabel" width="15%">
+                功能類型：
+            </th>
+            <td class="editTable" width="85%" colspan="3">
+                @Html.RadioButtonFor(a => a.ProgramType, "", new { Checked = true })
+                全部
+                @Html.RadioButtonFor(a => a.ProgramType, "F")
+                程式
+                @Html.RadioButtonFor(a => a.ProgramType, "M")
+                子選單
+                @Html.RadioButtonFor(a => a.ProgramType, "A")
+                主選單
+            </td>
+        </tr>
+        <tr>
+            <th class="mainLabel" width="15%">
+                主選單：
+            </th>
+            <td class="editTable" width="35%">
+                @Html.DropDownListFor(a => a.SelectedMenu, Model.MenuList)
+            </td>
+            <th class="mainLabel" width="15%">
+                子選單：
+            </th>
+            <td class="editTable" width="35%">
+                @Html.DropDownListFor(a => a.SelectedSubMenu, Model.SubMenuList)
+            </td>
+        </tr>
+        <tr>
+            <th class="mainLabel" width="15%">
+                程式代碼：
+            </th>
+            <td class="editTable" width="35%">
+                @Html.TextBoxFor(a => a.ProgramID, new { maxlength = "20" })
+            </td>
+            <th class="mainLabel" width="15%">
+                程式名稱：
+            </th>
+            <td class="editTable" width="35%">
+                @Html.TextBoxFor(a => a.ProgramName, new { maxlength = "40" })
+            </td>
+        </tr>
+        <tfoot>
+            <tr>
+                <td align="center" colspan="4">
+                    <a href="javascript:$('#QueryList').submit();" class="Search">查詢</a>&nbsp;&nbsp;@Html.ActionLink("新增", "Edit", null, new { @class = "Add" })
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+    <br />
+    <div id="resultDiv">
+        <table class="mainTable" border="0" cellpadding="1" cellspacing="1" style="width:100%;">
+            <tr>
+                <td>
+                    @if (Model.SysProgramList != null && Model.SysProgramList.Count > 0)
+                    {
+                        @Html.Partial("_GridViewPartial")
+                    }
+                </td>
+            </tr>
+
+        </table>
+    </div>
+
+    <script>
+        var alertMsg = '@Model.Message';
+        if (alertMsg != '') {
+            alert(alertMsg);
+            @(Model.Message = string.Empty)
+        }
+
+        function CustomButtonClick(s, e, url) {
+            var key = s.GetRowKey(e.visibleIndex);
+            if (e.buttonID === "editBtn") {
+                var destUrl = '@Url.Action("Edit", "SysProgram", new {id = "REPLACEME"})';
+                window.location.href = destUrl.replace('REPLACEME', key);
+            }
+            else if (e.buttonID === "viewBtn") {
+                var dest = '@Url.Action("Show", "SysProgram", new {id = "REPLACEME"})';
+                window.location.href = dest.replace('REPLACEME', key);
+            }
+            else if (e.buttonID === "delBtn") {
+                if (!confirm("確定是否刪除?")) {
+                    return false;
+                }
+                $('#hidId').val(key);
+                $('#formDelete').submit();
+            }
+        }
+        $(document).ready(function () {
+            //$("#State").prop("disabled", true);
+            $("#SelectedMenu").change(function () {
+                if ($("#SelectedMenu").val() != "") {
+                    var CountryOptions = {};
+                    CountryOptions.url = '@Url.Action("SubMenu", "SysProgram")';
+                    CountryOptions.type = "POST";
+                    CountryOptions.data = JSON.stringify({ p_parent: $("#SelectedMenu").val() });
+                    CountryOptions.datatype = "json";
+                    CountryOptions.contentType = "application/json";
+                    CountryOptions.success = function (StatesList) {
+                        $("#SelectedSubMenu").empty();
+                        $("#SelectedSubMenu").append("<option value=''>請選擇</option>");
+                        for (var i = 0; i < StatesList.length; i++) {
+                            $("#SelectedSubMenu").append("<option value=\"" + StatesList[i][0] + "\">" + StatesList[i][1] + "</option>");
+                        }
+                        $("#SelectedSubMenu").prop("disabled", false);
+                    };
+                    CountryOptions.error = function () { alert("Error in Getting States!!"); };
+                    $.ajax(CountryOptions);
+                }
+                else {
+                    $("#SelectedSubMenu").empty();
+                    $("#SelectedSubMenu").append("<option value=''>請選擇</option>");
+                    //$("#SubCategory").prop("disabled", true);
+                }
+            });
+        });
+    </script>
+}
+<form id="formDelete" action="@Url.Action("Delete")" method="post" style="display: none; ">
+    <input type="hidden" id="hidId" name="id" />
+</form>

@@ -1,0 +1,132 @@
+﻿@model PortalWeb.Areas.SystemConfig.Models.SysProgramVM
+
+@using (Html.BeginForm("Edit", "SysProgram", FormMethod.Post, new { role = "form", id = "EditBE" }))
+{
+    <table class="main_table" border="1" cellpadding="1" cellspacing="1" style="width:100%;">
+        <thead>
+            <tr>
+                <td colspan="4">
+                    資料檢視
+                </td>
+            </tr>
+        </thead>
+        <tr>
+            <th class="mainLabel" width="15%">
+                程式代碼：
+            </th>
+            <td class="editTable" colspan="3" width="85%">
+                @Html.Label(Model.EditSysProgram.program_id)
+            </td>
+        </tr>
+        <tr>
+            <th class="mainLabel" width="15%">
+                程式名稱：
+            </th>
+            <td class="editTable" colspan="3">
+                @Html.Label(Model.EditSysProgram.program_name)
+            </td>
+        </tr>
+        <tr>
+            <th class="mainLabel" width="15%">
+                功能類型：
+            </th>
+            <td class="editTable" colspan="3">
+                @Html.RadioButtonFor(a => a.EditSysProgram.program_type, "F", new { disabled = "disabled" })
+                程式
+                @Html.RadioButtonFor(a => a.EditSysProgram.program_type, "M", new { disabled = "disabled" })
+                子選單
+                @Html.RadioButtonFor(a => a.EditSysProgram.program_type, "A", new { disabled = "disabled" })
+                主選單
+            </td>
+        </tr>
+        <tr>
+            <th class="mainLabel" width="15%">
+                顯示順序：
+            </th>
+            <td class="editTable" colspan="3">
+                @Html.Label(Model.EditSysProgram.seq_no.ToString())
+            </td>
+        </tr>
+        <tr>
+            <th class="mainLabel" width="15%">
+                功能說明：
+            </th>
+            <td class="editTable" colspan="3">
+                @Html.Label(Model.EditSysProgram.program_desc)
+            </td>
+        </tr>
+        <tr>
+            <th class="mainLabel" width="15%">
+                主選單：
+            </th>
+            <td class="editTable" colspan="3">
+                @if (Model.EditSysProgram.program_type == "F")
+                {
+                    @Html.Label(Model.EditSysProgram.GRootProgramName)
+                }
+                @if (Model.EditSysProgram.program_type == "M")
+                {
+                    @Html.Label(Model.EditSysProgram.RootProgramName)
+                }
+            </td>
+        </tr>
+        <tr>
+            <th class="mainLabel" width="15%">
+                子選單：
+            </th>
+            <td class="editTable" colspan="3">
+                @if (Model.EditSysProgram.program_type == "F")
+                {
+                    @Html.Label(Model.EditSysProgram.RootProgramName)
+                }
+            </td>
+        </tr>
+        
+        <tr>
+            <th class="mainLabel" width="15%">
+                程式URL：
+            </th>
+            <td class="editTable" colspan="3">
+                @Html.Label(Model.EditSysProgram.program_url)
+            </td>
+        </tr>
+        @if (Model.EditSysProgram != null)
+        {
+            <tr>
+                <th class="mainLabel" width="15%">
+                    建立者：
+                </th>
+                <td class="editTable" width="35%">
+                    @Html.Label(Model.EditSysProgram.CREATE_USER_NAME)
+                </td>
+                <th class="mainLabel" width="15%">
+                    建立時間：
+                </th>
+                <td class="editTable" width="35%">
+                    @Html.Label(Model.EditSysProgram.CREATE_DATE.ToString("yyyy/MM/dd HH:mm:ss"))
+                </td>
+            </tr>
+            <tr>
+                <th class="mainLabel" width="15%">
+                    異動者：
+                </th>
+                <td class="editTable" width="35%">
+                    @Html.Label(Model.EditSysProgram.MODIFY_USER_NAME)
+                </td>
+                <th class="mainLabel" width="15%">
+                    異動時間：
+                </th>
+                <td class="editTable" width="35%">
+                    @Html.Label(Model.EditSysProgram.MODIFY_DATE.ToString("yyyy/MM/dd HH:mm:ss"))
+                </td>
+            </tr>
+        }
+        <tfoot>
+            <tr>
+                <td align="center" colspan="4">
+                    @Html.ActionLink("離開", "Index", null, new { @class = "Exit" })
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+}

@@ -1,0 +1,114 @@
+﻿@model WebLibrary.ViewModel.BaseVM
+@using Entity
+@using System.Xml
+
+@{
+    Layout = "~/Views/Shared/_rootLayout.cshtml";
+
+    UserData userData = null;
+    XmlDocument programXml = null;
+    XmlNodeList nodes = null;
+    string systemName = string.Empty;
+
+    userData = Session["UserData"] as UserData;
+    if (userData != null)
+    {
+        programXml = new XmlDocument();
+        programXml.LoadXml(userData.ProgramXml);
+        if (string.IsNullOrEmpty(userData.SelectedSystem))
+        {
+            nodes = programXml.SelectSingleNode("/MAIN").ChildNodes[0].ChildNodes;
+            systemName = programXml.SelectSingleNode("/MAIN").ChildNodes[0].Attributes["Name"].Value;
+        }
+        else
+        {
+            nodes = programXml.SelectSingleNode("/MAIN/" + userData.SelectedSystem).ChildNodes;
+            systemName = programXml.SelectSingleNode("/MAIN/" + userData.SelectedSystem).Attributes["Name"].Value;
+        }
+    }
+    else
+    {
+        <script>window.location.href = '@Url.Action("Login", "Account")'</script>
+    }
+
+    string areaName = (ViewContext.RouteData.DataTokens["area"] ?? string.Empty).ToString();
+    string controllerName = (ViewContext.RouteData.Values["controller"] ?? string.Empty).ToString();
+    string edType = (ViewContext.RouteData.Values["edType"] ?? string.Empty).ToString();
+    string matchUrl = string.Format("{0}/{1}/{2}", areaName, controllerName, edType);
+
+    string subMenuName = string.Empty,
+           functionCode = string.Empty,
+           functionName = string.Empty;
+
+    if (controllerName != "Home")
+    {
+        for (int i = 0; i < nodes.Count; i++)
+        {
+            subMenuName = nodes[i].Attributes["Name"].Value;
+            XmlNodeList proList = nodes[i].ChildNodes;
+
+            for (int j = 0; j < proList.Count; j++)
+            {
+                if (proList[j].Attributes["Link"].Value.IndexOf(matchUrl) > -1)
+                {
+                    functionCode = proList[j].Name;
+                    functionName = proList[j].Attributes["Name"].Value;
+                    break;
+                }
+            }
+            if (!(string.IsNullOrEmpty(functionCode) && string.IsNullOrEmpty(functionName)))
+            {
+                break;
+            }
+        }
+    }
+}
+<!--for jQuery Bootstrap-style Dropdowns Menu(jquery-dropdown-master)-->
+<link href="@Url.Content("~/Content/jquery.dropdown.min.css")" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src=@Url.Content("~/Scripts/jquery.dropdown.min.js")></script>
+<style>
+    .closebtn {
+        position: absolute;
+        top: 2px;
+        right: 25px;
+        font-size: 14px;
+        margin-left: 50px;
+    }
+</style>
+
+<div class="container-fluid">
+    <!--<div class="panel panel-default" style="margin-top:10px;">-->
+    @if (controllerName != "Home")
+    {
+        @(new HtmlString("<div class='panel panel-primary' style='margin:10px;box-shadow: 0 5px 10px rgba(0,0,0,0.2)'>"))
+        <table border="0" cellspacing="0" style="width: 100%; ">
+            <tr class="func_title">
+                <td>
+                    @(subMenuName) &gt;&gt; @(functionCode)&nbsp;@(functionName)
+                </td>
+                <td class="func_mode"></td>
+            </tr>
+        </table>
+    }
+    else
+    {
+        @(new HtmlString("<div style='margin-top:10px;'></div>"))
+    }
+
+
+    @RenderBody()
+    @if (controllerName != "Home")
+    {
+        @(new HtmlString("</div>"))
+
+    }
+
+
+    <div id="jq-dropdown-3" class="jq-dropdown jq-dropdown-tip jq-dropdown-scroll has-icons">
+        <div class="jq-dropdown-panel" style="width:250px;max-height:500px;overflow:auto;">
+            <span><a href="javascript:void(0)" onclick="$('#btnMenu').jqDropdown('hide', '');" class="closebtn">X</a>&nbsp;</span>
+            @Html.Partial("ContentLeftPartialView")
+        </div>
+    </div>
+</div>
+            <!--</div>-->

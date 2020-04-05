@@ -1,0 +1,51 @@
+﻿@{
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        settings.Name = "GridView";
+        settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+        settings.Styles.Header.BackColor = System.Drawing.ColorTranslator.FromHtml("#F2F2F2");
+        settings.CallbackRouteValues = new { Controller = "SysGroupProgram", Action = "GridViewPartialShow" };
+
+        settings.KeyFieldName = "FuncUuid";
+        settings.SettingsPager.PageSizeItemSettings.Visible = true;
+        settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "10", "20", "30" };
+        settings.SettingsPager.FirstPageButton.Visible = true;
+        settings.SettingsPager.LastPageButton.Visible = true;
+        settings.SettingsPager.Visible = true;
+        settings.SettingsPager.Position = System.Web.UI.WebControls.PagerPosition.Top;
+
+        settings.Settings.ShowGroupPanel = false;
+        settings.Settings.ShowFilterRow = false;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+        settings.SettingsAdaptivity.AdaptivityMode = GridViewAdaptivityMode.Off;
+        settings.SettingsAdaptivity.AdaptiveColumnPosition = GridViewAdaptiveColumnPosition.Right;
+        settings.SettingsAdaptivity.AdaptiveDetailColumnCount = 1;
+        settings.SettingsAdaptivity.AllowOnlyOneAdaptiveDetailExpanded = false;
+        settings.SettingsAdaptivity.HideDataCellsAtWindowInnerWidth = 0;
+
+        settings.Columns.Add("Sn", "序").Width = System.Web.UI.WebControls.Unit.Pixel(20);
+        settings.Columns.Add("GroupId", "角色代碼");
+        settings.Columns.Add("FuncId", "程式代碼");
+        settings.Columns.Add("FuncName", "程式名稱");
+        settings.Columns.Add("Descriptions", "描述");
+
+        settings.Columns.Add("StatusFlag", "執行", MVCxGridViewColumnType.CheckBox).Width = System.Web.UI.WebControls.Unit.Pixel(20);
+
+        settings.CustomColumnDisplayText = (s, e) =>
+        {
+            switch (e.Column.FieldName)
+            {
+        
+                case "StatusFlag":
+                    if (e.Value == null)
+                    {
+                        e.DisplayText = " ";
+                    }
+                    break;
+            }
+        };
+
+    });
+}
+@grid.Bind(Model.SysGroupProgramList).GetHtml()

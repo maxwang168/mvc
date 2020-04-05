@@ -1,0 +1,524 @@
+﻿@model PortalWeb.Areas.SystemConfig.Models.SysCodeInfoVM
+
+@using (Html.BeginForm("Edit", "SysCodeInfo", FormMethod.Post, new { role = "form", id = "EditBE" }))
+{
+    <table class="main_table" border="0" cellpadding="0" cellspacing="0" style="width:100%;">
+        <thead>
+            <tr>
+                <td colspan="4">
+                    資料編輯
+                </td>
+            </tr>
+        </thead>
+        <tr>
+            <th width="15%"></th>
+            <td width="85%" colspan="3">
+                @Html.RadioButtonFor(a => a.Type, "P", new { Checked = true })
+                參數
+                @Html.RadioButtonFor(a => a.Type, "S" )
+                子群組
+                @Html.RadioButtonFor(a => a.Type, "R")
+                群組
+            </td>
+        </tr>
+        <tr>
+            <th class="mainLabel" width="15%">
+                群組：
+            </th>
+            <td class="editTable" width="85%" colspan="3">
+                @Html.DropDownListFor(a => a.EditSysCodeInfo.GroupId, Model.CategoryList, "請選擇" , new { @class = "form-control", style = "width:300px" })
+                <label id="lblGroupIdMsg" style="color: red"></label>
+            </td>
+        </tr>
+        <tr>
+            <th class="mainLabel" width="15%">
+                子群組：
+            </th>
+            <td class="editTable" width="85%" colspan="3">
+                @Html.DropDownListFor(a => a.EditSysCodeInfo.Cate, Model.SubCategory, "請選擇", new { @class = "form-control", style = "width:300px" })
+                <label id="lblCateMsg" style="color: red"></label>
+            </td>
+        </tr>
+        <tr>
+            <th class="mainLabel" width="15%">
+                <span class="requiredMark">＊</span>代碼：
+            </th>
+            <td class="editTable form-inline" width="85%" colspan="3">
+                @Html.TextBoxFor(a => a.EditSysCodeInfo.CodeId, new { @class = "form-control", id = "CodeId", MaxLength = 30, style = "width:300px" })
+                <label id="lblCodeIdMsg" style="color: red"></label>
+                @Html.ValidationMessageFor(a => a.EditSysCodeInfo.CodeId, "", new { @class = "form-control", @style = "color:red;width:300px" })
+            </td>
+        </tr>
+        <tr>
+            <th class="mainLabel" width="15%">
+                <span class="requiredMark">＊</span>代碼名稱：
+            </th>
+            <td class="editTable form-inline" width="85%" colspan="3">
+                @Html.TextBoxFor(a => a.EditSysCodeInfo.CodeName, new { @class = "form-control" , MaxLength = 100, style = "width:300px" })
+                <label id="lblCodeNameMsg" style="color: red"></label>
+                @Html.ValidationMessageFor(a => a.EditSysCodeInfo.CodeName, "", new { @class = "form-control", @style = "color:red;width:300px" })
+            </td>
+        </tr>
+        <tr>
+            <th class="mainLabel" width="15%">
+                <span class="requiredMark">＊</span>顯示順序：
+            </th>
+            <td class="editTable form-inline" width="85%" colspan="3">
+                @Html.TextBoxFor(a => a.EditSysCodeInfo.Seq, new { @class = "form-control" , MaxLength = 10,  style = "width:300px" })
+                <label id="lblSeqMsg" style="color: red"></label>
+                @Html.ValidationMessageFor(a => a.EditSysCodeInfo.Seq, "", new { @class = "form-control", @style = "color:red;width:300px" })
+            </td>
+        </tr>
+        <tr>
+            <th class="mainLabel" width="15%">
+                可修改：
+            </th>
+            <td class="editTable" width="85%" colspan="3">
+                @Html.RadioButtonFor(a => a.EditSysCodeInfo.ModifyStatus, "Y", new { Checked = "checked" })
+                是
+                @Html.RadioButtonFor(a => a.EditSysCodeInfo.ModifyStatus, "N")
+                否
+            </td>
+        </tr>
+        <tr>
+            <th class="mainLabel" width="15%">
+                資料狀態：
+            </th>
+            <td class="editTable" width="85%" colspan="3">
+                @Html.RadioButtonFor(a => a.EditSysCodeInfo.StatusFlag, "Y", new { Checked = "checked" })
+                有效
+                @Html.RadioButtonFor(a => a.EditSysCodeInfo.StatusFlag, "N")
+                無效
+            </td>
+        </tr>
+        <tr>
+            <th class="mainLabel" width="15%">
+                說明：
+            </th>
+            <td class="editTable" width="85%" colspan="3">
+                @Html.TextBoxFor(a => a.EditSysCodeInfo.Description, new { @class = "form-control", MaxLength = 128 })
+            </td>
+        </tr>
+        <tr>
+            <th class="mainLabel" width="15%">
+                參數1：
+            </th>
+            <td class="editTable form-inline" width="35%">
+                @Html.TextBoxFor(a => a.EditSysCodeInfo.VarChar01, new { @class = "form-control" , MaxLength = 100, style = "width:200px" })
+                是否加密 @Html.CheckBoxFor(a => a.EditSysCodeInfo.Encrypt01)
+                @Html.HiddenFor(a => Model.EditSysCodeInfo.OrgVarChar01)
+            </td>
+            <th class="mainLabel" width="15%">
+                參數6：
+            </th>
+            <td class="editTable form-inline" width="35%">
+                @Html.TextBoxFor(a => a.EditSysCodeInfo.VarChar06, new { @class = "form-control" , MaxLength = 100, style = "width:200px" })
+                是否加密 @Html.CheckBoxFor(a => a.EditSysCodeInfo.Encrypt06)
+                @Html.HiddenFor(a => Model.EditSysCodeInfo.OrgVarChar06)
+            </td>
+        </tr>
+        <tr>
+            <th class="mainLabel" width="15%">
+                參數2：
+            </th>
+            <td class="editTable form-inline" width="35%">
+                @Html.TextBoxFor(a => a.EditSysCodeInfo.VarChar02, new { @class = "form-control" , MaxLength = 100, style = "width:200px" })
+                是否加密 @Html.CheckBoxFor(a => a.EditSysCodeInfo.Encrypt02)
+                @Html.HiddenFor(a => Model.EditSysCodeInfo.OrgVarChar02)
+            </td>
+            <th class="mainLabel" width="15%">
+                參數7：
+            </th>
+            <td class="editTable form-inline" width="35%">
+                @Html.TextBoxFor(a => a.EditSysCodeInfo.VarChar07, new { @class = "form-control" , MaxLength = 100, style = "width:200px" })
+                是否加密 @Html.CheckBoxFor(a => a.EditSysCodeInfo.Encrypt07)
+                @Html.HiddenFor(a => Model.EditSysCodeInfo.OrgVarChar07)
+            </td>
+        </tr>
+        <tr>
+            <th class="mainLabel" width="15%">
+                參數3：
+            </th>
+            <td class="editTable form-inline" width="35%">
+                @Html.TextBoxFor(a => a.EditSysCodeInfo.VarChar03, new { @class = "form-control" , MaxLength = 100, style = "width:200px" })
+                是否加密 @Html.CheckBoxFor(a => a.EditSysCodeInfo.Encrypt03)
+                @Html.HiddenFor(a => Model.EditSysCodeInfo.OrgVarChar03)
+            </td>
+            <th class="mainLabel" width="15%">
+                參數8：
+            </th>
+            <td class="editTable form-inline" width="35%">
+                @Html.TextBoxFor(a => a.EditSysCodeInfo.VarChar08, new { @class = "form-control", MaxLength = 100, style = "width:200px" })
+                是否加密 @Html.CheckBoxFor(a => a.EditSysCodeInfo.Encrypt08)
+                @Html.HiddenFor(a => Model.EditSysCodeInfo.OrgVarChar08)
+            </td>
+        </tr>
+        <tr>
+            <th class="mainLabel" width="15%">
+                參數4：
+            </th>
+            <td class="editTable form-inline" width="35%">
+                @Html.TextBoxFor(a => a.EditSysCodeInfo.VarChar04, new { @class = "form-control", MaxLength = 100, style = "width:200px" })
+                是否加密 @Html.CheckBoxFor(a => a.EditSysCodeInfo.Encrypt04)
+                @Html.HiddenFor(a => Model.EditSysCodeInfo.OrgVarChar04)
+            </td>
+            <th class="mainLabel" width="15%">
+                參數9：
+            </th>
+            <td class="editTable form-inline" width="35%">
+                @Html.TextBoxFor(a => a.EditSysCodeInfo.VarChar09, new { @class = "form-control",MaxLength = 100, style = "width:200px" })
+                是否加密 @Html.CheckBoxFor(a => a.EditSysCodeInfo.Encrypt09)
+                @Html.HiddenFor(a => Model.EditSysCodeInfo.OrgVarChar09)
+            </td>
+        </tr>
+        <tr>
+            <th class="mainLabel" width="15%">
+                參數5：
+            </th>
+            <td class="editTable form-inline" width="35%">
+                @Html.TextBoxFor(a => a.EditSysCodeInfo.VarChar05, new { @class = "form-control", MaxLength = 100, style = "width:200px" })
+                是否加密 @Html.CheckBoxFor(a => a.EditSysCodeInfo.Encrypt05)
+                @Html.HiddenFor(a => Model.EditSysCodeInfo.OrgVarChar05)
+            </td>
+            <th class="mainLabel" width="15%">
+                參數10：
+            </th>
+            <td class="editTable form-inline" width="35%">
+                @Html.TextBoxFor(a => a.EditSysCodeInfo.VarChar10, new { @class = "form-control",MaxLength = 100, style = "width:200px" })
+                是否加密 @Html.CheckBoxFor(a => a.EditSysCodeInfo.Encrypt10)
+                @Html.HiddenFor(a => Model.EditSysCodeInfo.OrgVarChar10)
+            </td>
+        </tr>
+        @if (Model.IsModify)
+        {
+            <tr>
+                <th class="mainLabel" width="15%">
+                    建立者：
+                </th>
+                <td class="editTable" width="35%">
+                    @Html.Label(Model.EditSysCodeInfo.CreatedByName.ToString())
+                </td>
+                <th class="mainLabel" width="15%">
+                    建立時間：
+                </th>
+                <td class="editTable" width="35%">
+                    @Html.Label(Model.EditSysCodeInfo.CreatedDate.ToString("yyyy/MM/dd HH:mm:ss"))
+                </td>
+            </tr>
+            <tr>
+                <th class="mainLabel" width="15%">
+                    異動者：
+                </th>
+                <td class="editTable" width="35%">
+                    @Html.Label(Model.EditSysCodeInfo.UpdatedByName.ToString())
+                </td>
+                <th class="mainLabel" width="15%">
+                    異動時間：
+                </th>
+                <td class="editTable" width="35%">
+                    @Html.Label(Model.EditSysCodeInfo.UpdatedDate.ToString("yyyy/MM/dd HH:mm:ss"))
+                </td>
+            </tr>
+        }
+
+        <tfoot>
+            <tr>
+                <td align="center" colspan="4">
+                    <a href="javascript:confirmEdit();" class="Ok" onclick="return isConfirm();">儲存</a>&nbsp;&nbsp;
+                    @Html.ActionLink("離開", "Index", null, new { @class = "Exit" })
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+    @Html.HiddenFor(a => a.IsModify, Model.IsModify)
+    @Html.HiddenFor(a => a.Type, Model.Type)
+    @Html.HiddenFor(a => a.EditSysCodeInfo.CodeUuid, Model.EditSysCodeInfo.CodeUuid)
+    @Html.HiddenFor(a => a.EditSysCodeInfo.CreatedBy, Model.EditSysCodeInfo.CreatedBy)
+    @Html.HiddenFor(a => a.EditSysCodeInfo.CreatedByName, Model.EditSysCodeInfo.CreatedByName)
+    @Html.HiddenFor(a => a.EditSysCodeInfo.CreatedDate, Model.EditSysCodeInfo.CreatedDate)
+    @Html.HiddenFor(a => a.EditSysCodeInfo.UpdatedBy, Model.EditSysCodeInfo.UpdatedBy)
+    @Html.HiddenFor(a => a.EditSysCodeInfo.UpdatedByName, Model.EditSysCodeInfo.UpdatedByName)
+    @Html.HiddenFor(a => a.EditSysCodeInfo.UpdatedDate, Model.EditSysCodeInfo.UpdatedDate)
+    @Html.HiddenFor(a => a.EditSysCodeInfo.CodeId, Model.EditSysCodeInfo.CodeId)
+    @Html.HiddenFor(a => a.EditSysCodeInfo.Cate, Model.EditSysCodeInfo.Cate)
+    @Html.HiddenFor(a => a.EditSysCodeInfo.GroupId, Model.EditSysCodeInfo.GroupId)
+    @Html.HiddenFor(a => a.EditSysCodeInfo.GroupName, Model.EditSysCodeInfo.GroupName)
+    <script>
+        var alertMsg = '@Model.Message';
+        if (alertMsg != '') {
+            alert(alertMsg);
+        }
+
+        function isConfirm() {
+
+            clearMsgLabel();
+            var m_return = true;
+
+            try {
+                if (document.getElementById("CodeId").value == "") {
+                    document.getElementById("lblCodeIdMsg").innerHTML = "代碼 欄位是必要項。";
+                    m_return = false;
+                }
+                if (document.getElementById("EditSysCodeInfo_CodeName").value == "") {
+                    document.getElementById("lblCodeNameMsg").innerHTML = "代碼名稱 欄位是必要項。";
+                    m_return = false;
+                }
+                if (document.getElementById("EditSysCodeInfo_Seq").value == "") {
+                    document.getElementById("lblSeqMsg").innerHTML = "顯示順序 欄位是必要項。";
+                    m_return = false;
+                }
+                if ($("input[name=Type]:checked").val() == "S" || $("input[name=Type]:checked").val() == "P") {
+                    if (document.getElementById("EditSysCodeInfo_GroupId").value == "") {
+                        document.getElementById("lblGroupIdMsg").innerHTML = "群組 欄位是必要項。";
+                        m_return = false;
+                    }
+                }
+                if ($("input[name=Type]:checked").val() == "P") {
+                    if (document.getElementById("EditSysCodeInfo_Cate").value == "") {
+                        document.getElementById("lblCateMsg").innerHTML = "子群組 欄位是必要項。";
+                        m_return = false;
+                    }
+                }
+            }
+            catch (e) {
+                alert(e);
+            }
+
+            return m_return;
+        }
+        function clearMsgLabel() {
+
+            var lblMsgObj = document.getElementsByTagName("span");
+
+            for (i = 0; i < lblMsgObj.length; i++) {
+                if (lblMsgObj[i].id.indexOf("Msg") > 0 || lblMsgObj[i].id.toLowerCase().indexOf("lblmessage") > 0) {
+                    lblMsgObj[i].innerHTML = "";
+                }
+            }
+
+        }
+        function confirmEdit() {
+            var Options = {},
+                ConfirmObj = {
+                    IsNeedConfirm: false,
+                    ConfirmMsg: '',
+                },
+                padLeft = function(str, len) {
+                    str = '' + str;
+                    if (str.length >= len) {
+                        return str;
+                    } else {
+                        return padLeft("0" + str, len);
+                    }
+                },
+                $UpdatedDate = $('#EditSysCodeInfo_UpdatedDate');
+            Options.url = '@Url.Action("ConfirmEdit")';
+            Options.type = "POST";
+            Options.data = JSON.stringify({
+                p_CodeUuid: $("#EditSysCodeInfo_CodeUuid").val(),
+                p_UpdatedBy: $("#EditSysCodeInfo_UpdatedBy").val(),
+                p_UpdatedDate: $UpdatedDate.attr('year') + '-' + $UpdatedDate.attr('month') + '-' + $UpdatedDate.attr('day') + ' ' +
+                               $UpdatedDate.attr('hour') + ':' + $UpdatedDate.attr('minute') + ':' + $UpdatedDate.attr('second') + '.' +
+                               padLeft($UpdatedDate.attr('millisecond'), 3)
+            });
+            Options.datatype = "json";
+            Options.contentType = "application/json";
+            Options.success = function (ConfirmObj) {
+                if (ConfirmObj) {
+                    if (ConfirmObj.IsNeedConfirm == false) {
+                        $('#EditBE').submit();
+                    }
+                    else if (ConfirmObj.IsNeedConfirm && ConfirmObj.ConfirmMsg && confirm(ConfirmObj.ConfirmMsg)) {
+                        $('#EditBE').submit();
+                    }
+                }
+                else {
+                    alert('存檔期間發生錯誤');
+                    console && console.error && console.error('存檔期間發生錯誤，ConfirmObj為空');
+                    return false;
+                }
+            };
+            Options.error = function () { alert("Error in ConfirmEdit!!"); };
+
+            if ($('#IsModify').val().toLowerCase() == 'false') {
+                $('#EditBE').submit();
+            }
+            else {
+                $.ajax(Options);
+            }
+        }
+
+        $(document).ready(function () {
+            $("#EditSysCodeInfo_GroupId").change(function () {
+                if ($("#EditSysCodeInfo_GroupId").val() != "" && $("input[name=Type]:checked").val() == "P") {
+                    var CountryOptions = {};
+                    CountryOptions.url = '@Url.Action("SubGroup", "SysCodeInfo")';
+                    CountryOptions.type = "POST";
+                    CountryOptions.data = JSON.stringify({ p_cate: $("#EditSysCodeInfo_GroupId").val() });
+                    CountryOptions.datatype = "json";
+                    CountryOptions.contentType = "application/json";
+                    CountryOptions.success = function (StatesList) {
+                        $("#EditSysCodeInfo_Cate").empty();
+                        $("#EditSysCodeInfo_Cate").append("<option value=''>請選擇</option>");
+                        for (var i = 0; i < StatesList.length; i++) {
+                            $("#EditSysCodeInfo_Cate").append("<option value=\"" + StatesList[i][1] + "|" + StatesList[i][2] + "\">" + StatesList[i][0] + "</option>");
+                        }
+                        $("#EditSysCodeInfo_Cate").prop("disabled", false);
+                    };
+                    CountryOptions.error = function () { alert("Error in Getting States!!"); };
+                    $.ajax(CountryOptions);
+                }
+                else {
+                    $("#EditSysCodeInfo_Cate").empty();
+                    $("#EditSysCodeInfo_Cate").append("<option value=''>請選擇</option>");
+                    //$("#SubCategory").prop("disabled", true);
+                }
+
+                /**
+                 * (新增時)異動代碼後,ajax查詢DB有無重覆的值 (群組下拉異動)
+                */
+                $.ajax({
+                    url: '@Url.Action("CheckKey", "SysCodeInfo")',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    type: 'POST',
+                    data: JSON.stringify({
+                        p_code_id: $("#CodeId").val(), p_group_id: $("#EditSysCodeInfo_GroupId").val(),
+                        p_cate: $("#EditSysCodeInfo_Cate").val(), p_type: $("input[name=Type]:checked").val()
+                    }),
+                    success: function (int) {
+                        $("#lblCodeIdMsg").text("");
+                        if (int > 0) {
+                            $("#lblCodeIdMsg").text("代碼重覆! 請重新輸入");
+                        }
+                    },
+                    complete: function (XMLHttpRequest, textStatus) {
+                    },
+                    error: function (XMLHttpRequest, textStatus) {
+                        alert("Error in Get Data for " + p_ddlObjID + "!!\n\r"
+                            + XMLHttpRequest.status + '-' + textStatus)
+                    }
+                })
+            });
+
+
+            /**
+             * (新增時)異動代碼後,ajax查詢DB有無重覆的值 (子群組下拉異動)
+            */
+            $("#EditSysCodeInfo_Cate").change(function () {
+                $.ajax({
+                    url: '@Url.Action("CheckKey", "SysCodeInfo")',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    type: 'POST',
+                    data: JSON.stringify({
+                        p_code_id: $("#CodeId").val(), p_group_id: $("#EditSysCodeInfo_GroupId").val(),
+                        p_cate: $("#EditSysCodeInfo_Cate").val(), p_type: $("input[name=Type]:checked").val()
+                    }),
+                    success: function (int) {
+                        $("#lblCodeIdMsg").text("");
+                        if (int > 0) {
+                            $("#lblCodeIdMsg").text("代碼重覆! 請重新輸入");
+                        }
+                    },
+                    complete: function (XMLHttpRequest, textStatus) {
+                    },
+                    error: function (XMLHttpRequest, textStatus) {
+                        alert("Error in Get Data for " + p_ddlObjID + "!!\n\r"
+                            + XMLHttpRequest.status + '-' + textStatus)
+                    }
+                })
+            });
+
+            /**
+             * (新增時)異動代碼後,ajax查詢DB有無重覆的值 (代碼欄位異動)
+            */
+            $("#CodeId").change(function () {
+                $.ajax({
+                    url: '@Url.Action("CheckKey", "SysCodeInfo")',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    type: 'POST',
+                    data: JSON.stringify({
+                        p_code_id: $("#CodeId").val(), p_group_id: $("#EditSysCodeInfo_GroupId").val(),
+                        p_cate: $("#EditSysCodeInfo_Cate").val(), p_type: $("input[name=Type]:checked").val()
+                    }),
+                    success: function (int) {
+                        $("#lblCodeIdMsg").text("");
+                        if (int > 0) {
+                            $("#lblCodeIdMsg").text("代碼重覆! 請重新輸入");
+                        }
+                    },
+                    complete: function (XMLHttpRequest, textStatus) {
+                    },
+                    error: function (XMLHttpRequest, textStatus) {
+                        alert("Error in Get Data for " + p_ddlObjID + "!!\n\r"
+                            + XMLHttpRequest.status + '-' + textStatus)
+                    }
+                })
+            });
+        });
+
+        $("input[name=Type]:radio").change(function () {
+            $("#EditSysCodeInfo_GroupId").val("");
+            $("#EditSysCodeInfo_Cate").val("");
+            $("#EditSysCodeInfo_Cate").empty();
+            $("#EditSysCodeInfo_Cate").append("<option value=''>請選擇</option>");
+            if ($("input[name=Type]:checked").val() == "R") {
+                $("#EditSysCodeInfo_GroupId").prop("disabled", true);
+                $("#EditSysCodeInfo_Cate").prop("disabled", true);
+            }
+            else if ($("input[name=Type]:checked").val() == "S") {
+                $("#EditSysCodeInfo_GroupId").prop("disabled", false);
+                $("#EditSysCodeInfo_Cate").prop("disabled", true);
+            }
+            else {
+                $("#EditSysCodeInfo_GroupId").prop("disabled", false);
+                $("#EditSysCodeInfo_Cate").prop("disabled", false);
+            }
+        });
+
+        if ($("#IsModify").val() == "True") {
+            $("input[name=Type]:radio").prop("disabled", true);
+            $("#EditSysCodeInfo_GroupId").prop("disabled", true);
+            $("#EditSysCodeInfo_Cate").prop("disabled", true);
+            if ($("input[name=Type]:checked").val() == "R") {
+                $("#EditSysCodeInfo_GroupId").val("");
+                $("#EditSysCodeInfo_Cate").empty();
+                $("#EditSysCodeInfo_Cate").append("<option value=''>請選擇</option>");
+                $("#CodeId").prop("disabled", true);
+            }
+            else if ($("input[name=Type]:checked").val() == "S") {
+                $("#EditSysCodeInfo_Cate").empty();
+                $("#EditSysCodeInfo_Cate").append("<option value=''>請選擇</option>");
+                $("#CodeId").prop("disabled", true);
+            }
+            //else if ($("input[name=Type]:checked").val() == "P") {
+            //}
+        }
+        else {
+            $("input[name=Type]:radio").prop("disabled", false);
+            if ($("input[name=Type]:checked").val() == "R") {
+                $("#EditSysCodeInfo_GroupId").val("");
+                $("#EditSysCodeInfo_Cate").empty();
+                $("#EditSysCodeInfo_Cate").append("<option value=''>請選擇</option>");
+                $("#EditSysCodeInfo_GroupId").prop("disabled", true);
+                $("#EditSysCodeInfo_Cate").prop("disabled", true);
+                //$("#CodeId").prop("disabled", true);
+            }
+            else if ($("input[name=Type]:checked").val() == "S") {
+                //$("#EditSysCodeInfo_GroupId").val("");
+                $("#EditSysCodeInfo_Cate").empty();
+                $("#EditSysCodeInfo_Cate").append("<option value=''>請選擇</option>");
+                $("#EditSysCodeInfo_GroupId").prop("disabled", false);
+                $("#EditSysCodeInfo_Cate").prop("disabled", true);
+                //$("#CodeId").prop("disabled", true);
+            }
+            //else if ($("input[name=Type]:checked").val() == "P") {
+
+            //}
+        }
+
+    </script>
+}
+

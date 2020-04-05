@@ -1,0 +1,17 @@
+C:\Temp\MVC\DDSCMvc2019\PortalService.Impl\bin\Debug\PortalService.Impl.dll
+C:\Temp\MVC\DDSCMvc2019\PortalService.Impl\bin\Debug\PortalService.Impl.pdb
+C:\Temp\MVC\DDSCMvc2019\PortalService.Impl\bin\Debug\CommonLibrary.dll
+C:\Temp\MVC\DDSCMvc2019\PortalService.Impl\bin\Debug\Entity.dll
+C:\Temp\MVC\DDSCMvc2019\PortalService.Impl\bin\Debug\log4net.dll
+C:\Temp\MVC\DDSCMvc2019\PortalService.Impl\bin\Debug\PortalService.Contract.dll
+C:\Temp\MVC\DDSCMvc2019\PortalService.Impl\bin\Debug\PortalService.FlowProcess.dll
+C:\Temp\MVC\DDSCMvc2019\PortalService.Impl\bin\Debug\CommonLibrary.pdb
+C:\Temp\MVC\DDSCMvc2019\PortalService.Impl\bin\Debug\Entity.pdb
+C:\Temp\MVC\DDSCMvc2019\PortalService.Impl\bin\Debug\PortalService.Contract.pdb
+C:\Temp\MVC\DDSCMvc2019\PortalService.Impl\bin\Debug\PortalService.FlowProcess.pdb
+C:\Temp\MVC\DDSCMvc2019\PortalService.Impl\bin\Debug\log4net.xml
+C:\Temp\MVC\DDSCMvc2019\PortalService.Impl\obj\Debug\PortalService.Impl.csprojAssemblyReference.cache
+C:\Temp\MVC\DDSCMvc2019\PortalService.Impl\obj\Debug\PortalService.Impl.csproj.CoreCompileInputs.cache
+C:\Temp\MVC\DDSCMvc2019\PortalService.Impl\obj\Debug\PortalService.Impl.csproj.CopyComplete
+C:\Temp\MVC\DDSCMvc2019\PortalService.Impl\obj\Debug\PortalService.Impl.dll
+C:\Temp\MVC\DDSCMvc2019\PortalService.Impl\obj\Debug\PortalService.Impl.pdb

@@ -1,0 +1,276 @@
+﻿
+@model PortalWeb.Areas.SystemConfig.Models.SysProgramVM
+
+@using (Html.BeginForm("Edit", "SysProgram", FormMethod.Post, new { role = "form", id = "EditBE" }))
+{
+    <table class="main_table" border="1" cellpadding="1" cellspacing="1" style="width:100%;">
+        <thead>
+            <tr>
+                <td colspan="4">
+                    資料編輯
+                </td>
+            </tr>
+        </thead>
+        <tr>
+            <th class="mainLabel" width="15%">
+                <span class="requiredMark">＊</span>程式代碼：
+            </th>
+            <td class="editTable" colspan="3" width="85%">
+                @if (Model.IsModify)
+                {
+                    @Html.Label(Model.EditSysProgram.program_id)
+                }
+                else
+                {
+                    @Html.EditorFor(a => a.EditSysProgram.program_id)
+                    @Html.ValidationMessageFor(a => a.EditSysProgram.program_id, "", new { @style = "color:red" })
+                }
+            </td>
+        </tr>
+        <tr>
+            <th class="mainLabel" width="15%">
+                <span class="requiredMark">＊</span>程式名稱：
+            </th>
+            <td class="editTable" colspan="3">
+                @Html.EditorFor(a => a.EditSysProgram.program_name)
+                @Html.ValidationMessageFor(a => a.EditSysProgram.program_name, "", new { @style = "color:red" })
+            </td>
+        </tr>
+        <tr>
+            <th class="mainLabel" width="15%">
+                <span class="requiredMark">＊</span>功能類型：
+            </th>
+            <td colspan="3">
+                @if (Model.IsModify)
+                {
+                    @Html.RadioButtonFor(a => a.EditSysProgram.program_type, "F", new { id = "typeF", disabled = "disabled" })
+                }
+                else
+                {
+                    @Html.RadioButtonFor(a => a.EditSysProgram.program_type, "F", new { id = "typeF", Checked = true, onclick = "rdoType_click();" })
+                }
+                程式
+                @if (Model.IsModify)
+                {
+                    @Html.RadioButtonFor(a => a.EditSysProgram.program_type, "M", new { id = "typeM", disabled = "disabled" })
+                }
+                else
+                {
+                    @Html.RadioButtonFor(a => a.EditSysProgram.program_type, "M", new { id = "typeM", onclick = "rdoType_click();" })
+                }
+                子選單
+                @if (Model.IsModify)
+                {
+                    @Html.RadioButtonFor(a => a.EditSysProgram.program_type, "A", new { id = "typeA", disabled = "disabled" })
+                }
+                else
+                {
+                    @Html.RadioButtonFor(a => a.EditSysProgram.program_type, "A", new { id = "typeA", onclick = "rdoType_click();" })
+                }
+                主選單
+            </td>
+        </tr>
+        <tr>
+            <th class="mainLabel" width="15%">
+                <span class="requiredMark">＊</span>顯示順序：
+            </th>
+            <td class="editTable" colspan="3">
+                @Html.TextBoxFor(a => a.EditSysProgram.seq_no, new { maxlength = "10" })
+                @Html.ValidationMessageFor(a => a.EditSysProgram.seq_no, "", new { @style = "color:red" })
+            </td>
+        </tr>
+        <tr>
+            <th class="mainLabel" width="15%">
+                功能說明：
+            </th>
+            <td class="editTable" colspan="3">
+                @Html.TextBoxFor(a => a.EditSysProgram.program_desc, new { maxlength = "80" })
+            </td>
+        </tr>
+        <tr id="trMenu">
+            <th class="mainLabel" width="15%">
+                主選單：
+            </th>
+            <td class="editTable" colspan="3">
+                @Html.DropDownListFor(a => a.EditSysProgram.Menu, Model.MenuList)
+                <label id="lblMenuMsg" style="color: red"></label>
+            </td>
+        </tr>
+        <tr id="trSubMenu">
+            <th class="mainLabel" width="15%">
+                子選單：
+            </th>
+            <td class="editTable" colspan="3">
+                @Html.DropDownListFor(a => a.EditSysProgram.SubMenu, Model.SubMenuList)
+            </td>
+        </tr>
+        
+        <tr id="trUrl">
+            <th class="mainLabel" width="15%">
+                <span class="requiredMark">＊</span>程式URL：
+            </th>
+            <td class="editTable" colspan="3">
+                @Html.TextBoxFor(a => a.EditSysProgram.program_url, new { maxlength = "200" })
+                <label id="lblProgramUrlMsg" style="color: red"></label>
+            </td>
+        </tr>
+        
+        @if (Model.IsModify)
+        {
+            <tr>
+                <th class="mainLabel" width="15%">
+                    建立者：
+                </th>
+                <td class="editTable" width="35%">
+                    @Html.Label(Model.EditSysProgram.CREATE_USER_NAME)
+                </td>
+                <th class="mainLabel" width="15%">
+                    建立時間：
+                </th>
+                <td class="editTable" width="35%">
+                    @Html.Label(Model.EditSysProgram.CREATE_DATE.ToString("yyyy/MM/dd HH:mm:ss"))
+                </td>
+            </tr>
+            <tr>
+                <th class="mainLabel" width="15%">
+                    異動者：
+                </th>
+                <td class="editTable" width="35%">
+                    @Html.Label(Model.EditSysProgram.MODIFY_USER_NAME)
+                </td>
+                <th class="mainLabel" width="15%">
+                    異動時間：
+                </th>
+                <td class="editTable" width="35%">
+                    @Html.Label(Model.EditSysProgram.MODIFY_DATE.ToString("yyyy/MM/dd HH:mm:ss"))
+                </td>
+            </tr>
+            @Html.HiddenFor(a => a.EditSysProgram.program_id, Model.EditSysProgram.program_id)
+            @Html.HiddenFor(a => a.EditSysProgram.program_type, Model.EditSysProgram.program_type)
+            @Html.HiddenFor(a => a.EditSysProgram.func_uuid, Model.EditSysProgram.func_uuid)
+            @Html.HiddenFor(a => a.EditSysProgram.CREATE_USER_UUID, Model.EditSysProgram.CREATE_USER_UUID)
+            @Html.HiddenFor(a => a.EditSysProgram.CREATE_USER_NAME)
+            @Html.HiddenFor(a => a.EditSysProgram.CREATE_DATE, Model.EditSysProgram.CREATE_DATE)
+            @Html.HiddenFor(a => a.EditSysProgram.MODIFY_USER_UUID, Model.EditSysProgram.MODIFY_USER_UUID)
+            @Html.HiddenFor(a => a.EditSysProgram.MODIFY_USER_NAME)
+            @Html.HiddenFor(a => a.EditSysProgram.MODIFY_DATE, Model.EditSysProgram.MODIFY_DATE)
+        }
+        <tfoot>
+            <tr>
+                <td align="center" colspan="4">
+                    <a href="javascript:$('#EditBE').submit();" class="Ok" onclick="return isConfirm();">儲存</a>&nbsp;&nbsp;@Html.ActionLink("離開", "Index", null, new { @class = "Exit" })
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+    @Html.HiddenFor(a => a.IsModify, Model.IsModify)
+    <script>
+        $(document).ready(function () {
+            //$("#State").prop("disabled", true);
+            $("#EditSysProgram_Menu").change(function () {
+                if ($("#EditSysProgram_Menu").val() != "") {
+                    var CountryOptions = {};
+                    CountryOptions.url = '@Url.Action("SubMenu", "SysProgram")';
+                    CountryOptions.type = "POST";
+                    CountryOptions.data = JSON.stringify({ p_parent: $("#EditSysProgram_Menu").val() });
+                    CountryOptions.datatype = "json";
+                    CountryOptions.contentType = "application/json";
+                    CountryOptions.success = function (StatesList) {
+                        $("#EditSysProgram_SubMenu").empty();
+                        $("#EditSysProgram_SubMenu").append("<option value=''>請選擇</option>");
+                        for (var i = 0; i < StatesList.length; i++) {
+                            $("#EditSysProgram_SubMenu").append("<option value=\"" + StatesList[i][0] + "\">" + StatesList[i][1] + "</option>");
+                        }
+                        $("#EditSysProgram_SubMenu").prop("disabled", false);
+                    };
+                    CountryOptions.error = function () { alert("Error in Getting States!!"); };
+                    $.ajax(CountryOptions);
+                }
+                else {
+                    $("#EditSysProgram_SubMenu").empty();
+                    $("#EditSysProgram_SubMenu").append("<option value=''>請選擇</option>");
+                    //$("#SubCategory").prop("disabled", true);
+                }
+            });
+
+        });
+
+        function isConfirm() {
+
+            clearMsgLabel();
+            var m_return = true;
+
+            try {
+                //程式URL必輸
+                if (document.getElementById("typeF").checked) {
+                    if (document.getElementById("EditSysProgram_program_url").value == "") {
+                        document.getElementById("lblProgramUrlMsg").innerHTML = "程式URL 欄位是必要項。";
+                        m_return = false;
+                    }
+                    if (document.getElementById("EditSysProgram_Menu").value == "") {
+                        document.getElementById("lblMenuMsg").innerHTML = "主選單 欄位是必要項。";
+                        m_return = false;
+                    }
+                }
+                if (document.getElementById("typeM").checked) {
+                    if (document.getElementById("EditSysProgram_Menu").value == "") {
+                        document.getElementById("lblMenuMsg").innerHTML = "主選單 欄位是必要項。";
+                        m_return = false;
+                    }
+                }
+
+            }
+            catch (e) {
+                alert(e);
+            }
+
+
+            return m_return;
+        }
+
+        function rdoType_click() {
+
+            var m_checkType;
+
+            if (document.getElementById("typeA").checked)
+                m_checkType = "A";
+            if (document.getElementById("typeM").checked)
+                m_checkType = "M";
+            if (document.getElementById("typeF").checked)
+                m_checkType = "F";
+
+            if (m_checkType == "A") {
+                document.getElementById("trMenu").style.visibility = "collapse";
+                document.getElementById("trSubMenu").style.visibility = "collapse";
+                document.getElementById("trUrl").style.visibility = "collapse";
+                //document.getElementById("trAction").style.visibility = "collapse";
+            } else if (m_checkType == "M") {
+                document.getElementById("trUrl").style.visibility = "collapse";
+                //document.getElementById("trAction").style.visibility = "collapse";
+                document.getElementById("trMenu").style.visibility = "visible";
+                document.getElementById("trSubMenu").style.visibility = "collapse";
+            } else {
+                document.getElementById("trMenu").style.visibility = "visible";
+                document.getElementById("trSubMenu").style.visibility = "visible";
+                document.getElementById("trUrl").style.visibility = "visible";
+                //document.getElementById("trAction").style.visibility = "visible";
+            }
+
+        }
+        function clearMsgLabel() {
+
+            var lblMsgObj = document.getElementsByTagName("span");
+
+            for (i = 0; i < lblMsgObj.length; i++) {
+                if (lblMsgObj[i].id.indexOf("Msg") > 0 || lblMsgObj[i].id.toLowerCase().indexOf("lblmessage") > 0) {
+                    lblMsgObj[i].innerHTML = "";
+                }
+            }
+
+        }
+        rdoType_click();
+
+    </script>
+}
+
+

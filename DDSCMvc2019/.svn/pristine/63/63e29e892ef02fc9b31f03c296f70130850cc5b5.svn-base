@@ -1,0 +1,62 @@
+﻿@{
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        settings.Name = "GridView";
+        settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+        settings.Styles.Header.BackColor = System.Drawing.ColorTranslator.FromHtml("#F2F2F2");
+        settings.CallbackRouteValues = new { Controller = "SysProgram", Action = "GridViewPartial" };
+
+        settings.KeyFieldName = "func_uuid";
+        settings.SettingsPager.PageSizeItemSettings.Visible = true;
+        settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "10", "20", "30" };
+        settings.SettingsPager.FirstPageButton.Visible = true;
+        settings.SettingsPager.LastPageButton.Visible = true;
+        settings.SettingsPager.Visible = true;
+        settings.SettingsPager.Position = System.Web.UI.WebControls.PagerPosition.Top;
+
+        settings.Settings.ShowGroupPanel = false;
+        settings.Settings.ShowFilterRow = false;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+        settings.SettingsAdaptivity.AdaptivityMode = GridViewAdaptivityMode.Off;
+        settings.SettingsAdaptivity.AdaptiveColumnPosition = GridViewAdaptiveColumnPosition.Right;
+        settings.SettingsAdaptivity.AdaptiveDetailColumnCount = 1;
+        settings.SettingsAdaptivity.AllowOnlyOneAdaptiveDetailExpanded = false;
+        settings.SettingsAdaptivity.HideDataCellsAtWindowInnerWidth = 0;
+
+        settings.CommandColumn.Visible = true;
+        settings.CommandColumn.Caption = "功能";
+        settings.CommandColumn.HeaderStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+
+        settings.CommandColumn.ButtonRenderMode = GridCommandButtonRenderMode.Image;
+        GridViewCommandColumnCustomButton viewButton = new GridViewCommandColumnCustomButton();
+        viewButton.ID = "viewBtn";
+        viewButton.Image.ToolTip = "檢視";
+        viewButton.Image.Url = Url.Content("~/Content/Images/grid_buttons/Search_16x16.png");
+        viewButton.Index = 0;
+        GridViewCommandColumnCustomButton editButton = new GridViewCommandColumnCustomButton();
+        editButton.ID = "editBtn";
+        editButton.Image.ToolTip = "編輯";
+        editButton.Image.Url = Url.Content("~/Content/Images/grid_buttons/Edit_16x16.png");
+        editButton.Index = 1;
+        GridViewCommandColumnCustomButton delButton = new GridViewCommandColumnCustomButton();
+        delButton.ID = "delBtn";
+        delButton.Image.ToolTip = "刪除";
+        delButton.Image.Url = Url.Content("~/Content/Images/grid_buttons/Delete_16x16.png");
+        delButton.Index = 2;
+
+        settings.CommandColumn.CustomButtons.Add(viewButton);
+        settings.CommandColumn.CustomButtons.Add(editButton);
+        settings.CommandColumn.CustomButtons.Add(delButton);
+        settings.ClientSideEvents.CustomButtonClick = string.Format("function(s, e) {{ CustomButtonClick(s, e, '{0}'); }}", Url.Action("Edit", "SysProgram"));
+
+
+        settings.Columns.Add("RootProgramName", "上層");
+        settings.Columns.Add("program_id", "程式代碼");
+        settings.Columns.Add("program_name", "名稱");
+        settings.Columns.Add("program_type", "類型");
+        settings.Columns.Add("seq_no", "順序");
+
+});
+}
+@grid.Bind(Model.SysProgramList).GetHtml()

@@ -1,0 +1,78 @@
+﻿@using Entity
+@using System.Xml
+@{
+    UserData userData = null;
+    XmlDocument programXml = null;
+    XmlNodeList nodes = null;
+
+    userData = Session["UserData"] as UserData;
+    if (userData != null)
+    {
+        programXml = new XmlDocument();
+        programXml.LoadXml(userData.ProgramXml);
+        if (string.IsNullOrEmpty(userData.SelectedSystem))
+        {
+            nodes = programXml.SelectSingleNode("/MAIN").ChildNodes[0].ChildNodes;
+        }
+        else
+        {
+            nodes = programXml.SelectSingleNode("/MAIN/" + userData.SelectedSystem).ChildNodes;
+        }
+    }
+    else
+    {
+        <script>window.location.href = '@Url.Action("Login", "Account")'</script>
+    }
+
+    string areaName = (ViewContext.RouteData.DataTokens["area"] ?? string.Empty).ToString();
+    string controllerName = (ViewContext.RouteData.Values["controller"] ?? string.Empty).ToString();
+    string matchUrl = string.Format("{0}/{1}", areaName, controllerName);
+}
+<div class="leftPanel">
+    @Html.DevExpress().NavBar(settings =>
+{
+    settings.Name = "LeftNavBar";
+    settings.AutoCollapse = false;
+    settings.EnableAnimation = true;
+    settings.Width = Unit.Percentage(100);
+    settings.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
+    settings.ControlStyle.Paddings.Padding = Unit.Pixel(0);
+
+    settings.Styles.Item.SelectedStyle.BackColor = System.Drawing.Color.SteelBlue;
+    settings.Styles.Item.HoverStyle.ForeColor = System.Drawing.Color.Red;
+
+
+
+    for (int i = 0; i < nodes.Count; i++)
+    {
+        bool IsGroupSelected = false;
+        MVCxNavBarGroup group = new MVCxNavBarGroup(nodes[i].Attributes["Name"].Value);
+        XmlNodeList proList = nodes[i].ChildNodes;
+
+        for (int j = 0; j < proList.Count; j++)
+        {
+            bool IsFunctionSelected = false;
+
+            if (proList[j].Attributes["Link"].Value.IndexOf(matchUrl) > -1)
+            {
+                IsGroupSelected = true;
+                IsFunctionSelected = true;
+            }
+            else
+            {
+                IsFunctionSelected = false;
+            }
+
+            group.Items.Add(
+                new MVCxNavBarItem
+                {
+                    Text = proList[j].Attributes["Name"].Value,
+                    NavigateUrl = proList[j].Attributes["Link"].Value,
+                    Selected = IsFunctionSelected
+                });
+        }
+        group.Expanded = IsGroupSelected;
+        settings.Groups.Add(group);
+    }
+}).GetHtml()
+</div>

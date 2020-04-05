@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>C:\Project\DDSC\DDSCMvc2019\PortalService\bin\Release\Publish</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="AaSysService.svc">
+      <publishTime>12/22/2017 12:28:15</publishTime>
+    </File>
+    <File Include="BasService.svc">
+      <publishTime>12/22/2017 12:28:15</publishTime>
+    </File>
+    <File Include="bin/CommonLibrary.dll">
+      <publishTime>09/29/2019 17:16:07</publishTime>
+    </File>
+    <File Include="bin/CommonLibrary.pdb">
+      <publishTime>09/29/2019 17:16:07</publishTime>
+    </File>
+    <File Include="bin/Entity.dll">
+      <publishTime>09/29/2019 17:16:07</publishTime>
+    </File>
+    <File Include="bin/Entity.pdb">
+      <publishTime>09/29/2019 17:16:07</publishTime>
+    </File>
+    <File Include="bin/log4net.dll">
+      <publishTime>03/08/2017 19:26:22</publishTime>
+    </File>
+    <File Include="bin/PortalService.Contract.dll">
+      <publishTime>09/29/2019 17:16:07</publishTime>
+    </File>
+    <File Include="bin/PortalService.Contract.pdb">
+      <publishTime>09/29/2019 17:16:07</publishTime>
+    </File>
+    <File Include="bin/PortalService.dll">
+      <publishTime>09/29/2019 17:22:14</publishTime>
+    </File>
+    <File Include="bin/PortalService.FlowProcess.dll">
+      <publishTime>09/29/2019 17:22:14</publishTime>
+    </File>
+    <File Include="bin/PortalService.FlowProcess.pdb">
+      <publishTime>09/29/2019 17:22:14</publishTime>
+    </File>
+    <File Include="bin/PortalService.Impl.dll">
+      <publishTime>09/29/2019 17:22:14</publishTime>
+    </File>
+    <File Include="bin/PortalService.Impl.pdb">
+      <publishTime>09/29/2019 17:22:14</publishTime>
+    </File>
+    <File Include="bin/PortalService.pdb">
+      <publishTime>09/29/2019 17:22:14</publishTime>
+    </File>
+    <File Include="ComService.svc">
+      <publishTime>12/22/2017 12:28:15</publishTime>
+    </File>
+    <File Include="FlowService.svc">
+      <publishTime>12/22/2017 12:28:15</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>06/12/2019 17:14:38</publishTime>
+    </File>
+    <File Include="LogService.svc">
+      <publishTime>12/22/2017 12:28:15</publishTime>
+    </File>
+    <File Include="MonitorService.svc">
+      <publishTime>12/22/2017 12:28:16</publishTime>
+    </File>
+    <File Include="NotifyService.svc">
+      <publishTime>12/22/2017 12:28:15</publishTime>
+    </File>
+    <File Include="SysService.svc">
+      <publishTime>12/22/2017 12:28:15</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>09/29/2019 17:22:14</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

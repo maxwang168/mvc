@@ -1,0 +1,198 @@
+﻿
+@model PortalWeb.Models.InternalVM
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href=@Url.Content("~/Content/bootstrap-tab.css") />
+<style>
+    .title_block {
+        width: 98%;
+        margin-left: 1%;
+        /*height: 250px;*/
+        overflow-y: auto;
+        border: 1px #A6A8A7 solid;
+        border-bottom-right-radius: 3px;
+        border-bottom-left-radius: 3px;
+        vertical-align: top;
+        /*box-shadow: 3px 3px 0px lightgray;*/
+    }
+
+    .header_block {
+        width: 98%;
+        margin-left: 1%;
+        height: 35px;
+        background-repeat: repeat-x;
+        /*background-color: rgb(248,248,248);*/
+        border-top: 1px #A6A8A7 solid;
+        border-left: 1px #A6A8A7 solid;
+        border-right: 1px #A6A8A7 solid;
+        font-family: 微軟正黑體;
+        font-size: 16px;
+        padding: 5px 0 0 0px;
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+        vertical-align: top;
+        color: #696969;
+        font-weight: bold;
+        /*box-shadow: 3px 1px 1px lightgray;*/
+    }
+
+ 
+</style>
+
+@using (Html.BeginForm("InternalIndex", "Home", FormMethod.Post, new { role = "form", id = "LoginForm" }))
+{
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="panel panel-primary panel-transparent card" id="myChart1" style="box-shadow: 0 5px 10px rgba(0,0,0,0.2)">
+                    <div class="panel-body">
+                        <div class="text-primary text-center">
+                            本日統計
+                        </div>
+                        <canvas id="dice_finbal" class="mycanvas"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-primary panel-transparent card" id="myChart2" style="box-shadow: 0 5px 10px rgba(0,0,0,0.2)">
+                    <div class="panel-body">
+                        <div class="text-primary text-center">
+                            統計圖表
+                        </div>
+                        <canvas id="dice_finbal" class="mycanvas"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-primary panel-transparent card" id="myChart3" style="box-shadow: 0 5px 10px rgba(0,0,0,0.2)">
+                    <div class="panel-body">
+                        <div class="text-primary text-center">
+                            統計圖表
+                        </div>
+                        <canvas id="dice_finbal" class="mycanvas"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="panel panel-primary" style="box-shadow: 0 5px 10px rgba(0,0,0,0.2)">
+            <div class="panel-heading">
+                &nbsp;&nbsp;&nbsp;&nbsp;待辦事項
+            </div>
+            <div class="panel-body">
+
+                @{
+                    int count = 0;
+                }
+                @for (int i = 0; i < Model.TodoList.Count; i++)
+                {
+                    count++;
+                    <div style="margin:10px 0px 0px 10px;font-size:14px;">
+                        @Html.Raw("<a href=\"" + @Url.Action("Index", "Flow", new { Area = "System", edType = "n", Id = Model.TodoList[i].function_id }) + "\">" + Model.TodoList[i].function_name + "</a>")
+                    </div>
+                }
+                @for (int i = count; i < 10; i++)
+                {
+                    <br />
+                }
+            </div>
+        </div>
+
+
+        <div class="panel panel-primary" style="box-shadow: 0 5px 10px rgba(0,0,0,0.2)">
+            <div class="panel-heading">
+                &nbsp;&nbsp;&nbsp;&nbsp;通知事項
+            </div>
+            <div class="panel-body">
+                @{
+                    var NotifyRecs = Model.NotificationList.OrderByDescending(a => a.schedule);
+
+                    @*@for (int i = 0; i < Model.NotificationList.Count; i++)
+                        {
+                            <div style="margin:10px 0px 0px 10px;font-size:14px;">
+                                @Html.Raw("<a id=\"noti\" href=\"\" rec_id=\"" + Model.NotificationList[i].rec_uuid + "\">" + Model.NotificationList[i].notify_title + "</a>")
+                            </div>
+                        }*@
+                    foreach (var Rec in NotifyRecs)
+                    {
+                        <div style="margin:10px 0px 0px 10px;font-size:14px;">
+                            <a id="noti" href="" rec_id="@Rec.rec_uuid">@(Rec.schedule.ToString("yyyy/MM/dd HH:mm:ss") + Rec.notify_title)</a>
+                        </div>
+                    }
+                    for (int i = NotifyRecs.Count(); i < 10; i++)
+                    {
+                        <br />
+                    }
+                }
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close" name="close">x</span>
+            <table border="0" cellpadding="1" cellspacing="1" class="mainTable" style="width:100%;">
+                <tr>
+                    <td style="border-bottom-width: 0px; color: black; font-family: 微軟正黑體; font-weight: normal; font-size: 14px; background-color: #EEEEEE;" width="100%">
+                        通知內容
+                    </td>
+
+                </tr>
+                <tr>
+                    <td style="border-bottom-width: 0px; color: black;">
+                        <div id="notify_data">
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        var modal = document.getElementById('myModal');
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        $(document).ready(function () {
+            $('a#noti').each(function () {
+                //alert($(this).attr("rec_id"));
+                $(this).click(function (e) {
+                    e.preventDefault();
+                    var rec_id = $(this).attr("rec_id");
+                    //alert(rec_id);
+                    var options = {};
+                    options.url = '@Url.Action("NotifyData", "Home")';
+                    options.type = "POST";
+                    options.data = JSON.stringify({ Id: rec_id });
+                    options.datatype = "json";
+                    options.contentType = "application/json";
+                    options.success = function (StatesList) {
+                        $('#notify_data').html(StatesList);
+                        modal.style.display = "block";
+                    };
+                    options.error = function () { alert("Error!!"); };
+                    $.ajax(options);
+                    return false;
+                });
+            });
+        });
+
+    </script>
+}

@@ -1,0 +1,77 @@
+﻿@model PortalWeb.Areas.SystemConfig.Models.SysGroupProgramVM
+
+@using (Html.BeginForm("EditProgram", "SysGroupProgram", FormMethod.Post, new { role = "form", id = "EditBE" }))
+{
+    <script type="text/javascript">
+        function SelectionChanged(s, e) {
+            s.GetSelectedFieldValues("FuncUuid", GetSelectedFieldValuesCallback);
+        }
+        function GetSelectedFieldValuesCallback(values) {
+            var selectedKeys = "";
+            for (var index = 0; index < values.length; index++) {
+                if (selectedKeys != "") {
+                    selectedKeys += "|";
+                }
+                selectedKeys += values[index];
+            }
+            $('#FuncUuidList').val(selectedKeys);
+        }
+    </script>
+    <table class="main_table" border="1" cellpadding="1" cellspacing="1" style="width:100%;">
+        <thead>
+            <tr>
+                <td class="query_title" colspan="2">
+                    資料編輯
+                </td>
+            </tr>
+        </thead>
+        <tr>
+            <th class="mainLabel" width="15%">
+                角色群組：
+            </th>
+            <td class="editTable" width="85%">
+                @Html.DropDownListFor(a => a.GroupId, Model.GroupNameList, new { disabled = true })
+            </td>
+        </tr>
+    </table>
+    <div id="resultDiv">
+        <table class="mainTable" border="0" cellpadding="1" cellspacing="1" style="width:100%;">
+            <tr>
+                <td>
+                    @if (Model.SysGroupProgramList != null && Model.SysGroupProgramList.Count > 0)
+                    {
+                        @Html.Partial("_GridViewPartialEdit")
+                    }
+                </td>
+            </tr>
+        </table>
+    </div>
+    <table class="main_table" border="1" cellpadding="1" cellspacing="1" style="width:100%;">
+        <tfoot>
+            <tr>
+                <td align="center" colspan="4">
+                    <a href="javascript:Save();" class="Ok">儲存</a>&nbsp;&nbsp;
+                    @Html.ActionLink("離開", "Index", null, new { @class = "Exit" })
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+    @Html.HiddenFor(a => a.FuncUuidList, "")
+    <script>
+        function Save() {
+            var CountryOptions = {};
+            CountryOptions.url = '@Url.Action("Save", "SysGroupProgram")';
+            CountryOptions.type = "POST";
+            CountryOptions.data = JSON.stringify({ p_funcUuidList: $('#FuncUuidList').val() });
+            CountryOptions.datatype = "json";
+            CountryOptions.contentType = "application/json";
+            CountryOptions.success = function (Result) {
+                var url = '@Url.Action("Index", "SysGroupProgram")';
+                window.location.href = url;
+            };
+            CountryOptions.error = function () { alert("Error in Resend!!"); };
+            $.ajax(CountryOptions);
+        }
+    </script>
+}
+

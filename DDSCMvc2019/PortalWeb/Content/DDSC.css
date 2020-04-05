@@ -1,0 +1,781 @@
+﻿body {
+}
+
+a.Add {
+    background: url(../Content/Images/func_buttons/btn_AddNew.png) no-repeat top left;
+    display: inline-block;
+    background-size: 70px 22px;
+    width: 70px;
+    height: 22px;
+    text-indent: -9999px; /* hides the link text */
+}
+
+a.Search {
+    background: url(../Content/Images/func_buttons/btn_Search.png) no-repeat top left;
+    display: inline-block;
+    background-size: 70px 22px;
+     width: 70px;
+    height: 22px;
+    text-indent: -9999px; /* hides the link text */
+}
+
+a.Save {
+    background: url(../Content/Images/func_buttons/btn_Save.png) no-repeat top left;
+    display: inline-block;
+    background-size: 70px 22px;
+     width: 70px;
+    height: 22px;
+    text-indent: -9999px; /* hides the link text */
+}
+
+a.Delete {
+    background: url(../Content/Images/func_buttons/btn_delete.png) no-repeat top left;
+    display: inline-block;
+    background-size: 70px 22px;
+     width: 70px;
+    height: 22px;
+    text-indent: -9999px; /* hides the link text */
+}
+
+a.Exit {
+    background: url(../Content/Images/func_buttons/btn_exit.png) no-repeat top left;
+    display: inline-block;
+    background-size: 70px 22px;
+     width: 70px;
+    height: 22px;
+    text-indent: -9999px; /* hides the link text */
+}
+
+a.Reset {
+    background: url(../Content/Images/func_buttons/btn_Reset.png) no-repeat top left;
+    display: inline-block;
+    background-size: 70px 22px;
+     width: 70px;
+    height: 22px;
+    text-indent: -9999px; /* hides the link text */
+}
+
+a.Edit {
+    background: url(../Content/Images/func_buttons/btn_Edit.png) no-repeat top left;
+    display: inline-block;
+    background-size: 70px 22px;
+     width: 70px;
+    height: 22px;
+    text-indent: -9999px; /* hides the link text */
+}
+
+a.Export {
+    background: url(../Content/Images/func_buttons/btn_Export.png) no-repeat top left;
+    display: inline-block;
+    background-size: 70px 22px;
+     width: 70px;
+    height: 22px;
+    text-indent: -9999px; /* hides the link text */
+}
+
+a.Import {
+    background: url(../Content/Images/func_buttons/btn_Import.png) no-repeat top left;
+    display: inline-block;
+    background-size: 70px 22px;
+     width: 70px;
+    height: 22px;
+    text-indent: -9999px; /* hides the link text */
+}
+
+a.Ok {
+    background: url(../Content/Images/func_buttons/btn_ok.png) no-repeat top left;
+    display: inline-block;
+    background-size: 70px 22px;
+     width: 70px;
+    height: 22px;
+    text-indent: -9999px; /* hides the link text */
+}
+
+a.Print {
+    background: url(../Content/Images/func_buttons/btn_Print.png) no-repeat top left;
+    display: inline-block;
+    background-size: 70px 22px;
+     width: 70px;
+    height: 22px;
+    text-indent: -9999px; /* hides the link text */
+}
+
+a.Back {
+    background: url(../Content/Images/func_buttons/btn_Back.png) no-repeat top left;
+    display: inline-block;
+    background-size: 70px 22px;
+     width: 70px;
+    height: 22px;
+    text-indent: -9999px; /* hides the link text */
+}
+
+a.Upload {
+    background: url(../Content/Images/func_buttons/btn_Upload.png) no-repeat top left;
+    display: inline-block;
+    background-size: 70px 22px;
+     width: 70px;
+    height: 22px;
+    text-indent: -9999px; /* hides the link text */
+}
+
+a.Execute {
+    background: url(../Content/Images/func_buttons/btn_Execute.png) no-repeat top left;
+    display: inline-block;
+    background-size: 70px 22px;
+     width: 70px;
+    height: 22px;
+    text-indent: -9999px; /* hides the link text */
+}
+
+a.Allow {
+    background: url(../Content/Images/func_buttons/btn_Allow.png) no-repeat top left;
+    display: inline-block;
+    background-size: 70px 22px;
+     width: 70px;
+    height: 22px;
+    text-indent: -9999px; /* hides the link text */
+}
+
+a.Reject {
+    background: url(../Content/Images/func_buttons/btn_Reject.png) no-repeat top left;
+    display: inline-block;
+    background-size: 70px 22px;
+     width: 70px;
+    height: 22px;
+    text-indent: -9999px; /* hides the link text */
+}
+
+a.Stop {
+    background: url(../Content/Images/func_buttons/btn_Stop.png) no-repeat top left;
+    display: inline-block;
+    background-size: 70px 22px;
+     width: 70px;
+    height: 22px;
+    text-indent: -9999px; /* hides the link text */
+}
+
+a.Agree {
+    background: url(../Content/Images/func_buttons/btn_Agree.png) no-repeat top left;
+    display: inline-block;
+    background-size: 70px 22px;
+     width: 70px;
+    height: 22px;
+    text-indent: -9999px; /* hides the link text */
+}
+
+a.Keep {
+    background: url(../Content/Images/func_buttons/btn_Keep.png) no-repeat top left;
+    display: inline-block;
+    background-size: 70px 22px;
+     width: 70px;
+    height: 22px;
+    text-indent: -9999px; /* hides the link text */
+}
+
+a.BatchFL {
+    background: url(../Content/Images/func_buttons/btn_BatchFL.png) no-repeat top left;
+    display: inline-block;
+    background-size: 70px 22px;
+     width: 70px;
+    height: 22px;
+    text-indent: -9999px; /* hides the link text */
+}
+
+a.AutoFL {
+    background: url(../Content/Images/func_buttons/btn_AutoFL.png) no-repeat top left;
+    display: inline-block;
+    background-size: 70px 22px;
+     width: 70px;
+    height: 22px;
+    text-indent: -9999px; /* hides the link text */
+}
+
+a.SendApply {
+    background: url(../Content/Images/func_buttons/btn_sendApply.png) no-repeat top left;
+    display: inline-block;
+    background-size: 70px 22px;
+     width: 70px;
+    height: 22px;
+    text-indent: -9999px; /* hides the link text */
+}
+
+a.Subscribe {
+    background: url(../Content/Images/func_buttons/btn_Subscription.png) no-repeat top left;
+    display: inline-block;
+    background-size: 70px 22px;
+     width: 70px;
+    height: 22px;
+    text-indent: -9999px; /* hides the link text */
+}
+
+a.Subscribe2 {
+    background: url(../Content/Images/func_buttons/btn_Subscription2.png) no-repeat top left;
+    display: inline-block;
+    background-size: 70px 22px;
+     width: 70px;
+    height: 22px;
+    text-indent: -9999px; /* hides the link text */
+}
+a.Subscribe3 {
+    background: url(../Content/Images/func_buttons/btn_Subscription3.png) no-repeat top left;
+    display: inline-block;
+    background-size: 70px 22px;
+     width: 70px;
+    height: 22px;
+    text-indent: -9999px; /* hides the link text */
+}
+a.GiveUp {
+    background: url(../Content/Images/func_buttons/btn_cancel.png) no-repeat top left;
+    display: inline-block;
+    background-size: 70px 22px;
+     width: 70px;
+    height: 22px;
+    text-indent: -9999px; /* hides the link text */
+}
+a.Cancel2 {
+    background: url(../Content/Images/func_buttons/btn_Cancel2.png) no-repeat top left;
+    display: inline-block;
+    background-size: 70px 22px;
+     width: 70px;
+    height: 22px;
+    text-indent: -9999px; /* hides the link text */
+}
+
+a.Cancel3 {
+    background: url(../Content/Images/func_buttons/btn_Cancel3.png) no-repeat top left;
+    display: inline-block;
+    background-size: 70px 22px;
+     width: 70px;
+    height: 22px;
+    text-indent: -9999px; /* hides the link text */
+}
+a.Cancel4 {
+    background: url(../Content/Images/func_buttons/btn_Cancel4.png) no-repeat top left;
+    display: inline-block;
+    background-size: 70px 22px;
+     width: 70px;
+    height: 22px;
+    text-indent: -9999px; /* hides the link text */
+}
+
+a.SubscriptionAll {
+    background: url(../Content/Images/func_buttons/btn_Subscription_all.png) no-repeat top left;
+    display: inline-block;
+    background-size: 70px 22px;
+     width: 70px;
+    height: 22px;
+    text-indent: -9999px; /* hides the link text */
+}
+
+a.CancelAll {
+    background: url(../Content/Images/func_buttons/btn_Cancel_all.png) no-repeat top left;
+    display: inline-block;
+    background-size: 70px 22px;
+     width: 70px;
+    height: 22px;
+    text-indent: -9999px; /* hides the link text */
+}
+
+a.Return {
+    background: url(../Content/Images/func_buttons/btn_rerurn.png) no-repeat top left;
+    display: inline-block;
+    background-size: 70px 22px;
+     width: 70px;
+    height: 22px;
+    text-indent: -9999px; /* hides the link text */
+}
+
+a.groupBy1 {
+    background: url(../Content/Images/icons/groupBy1.png) no-repeat top left;
+    display: inline-block;
+    background-size: 70px 22px;
+     width: 70px;
+    height: 22px;
+    text-indent: -9999px; /* hides the link text */
+}
+
+a.groupBy2 {
+    background: url(../Content/Images/icons/groupBy2.png) no-repeat top left;
+    display: inline-block;
+    background-size: 70px 22px;
+     width: 70px;
+    height: 22px;
+    text-indent: -9999px; /* hides the link text */
+}
+
+a.groupBy3 {
+    background: url(../Content/Images/icons/groupBy3.png) no-repeat top left;
+    display: inline-block;
+    background-size: 70px 22px;
+     width: 70px;
+    height: 22px;
+    text-indent: -9999px; /* hides the link text */
+}
+
+a.groupBy4 {
+    background: url(../Content/Images/icons/groupBy4.png) no-repeat top left;
+    display: inline-block;
+    background-size: 70px 22px;
+     width: 70px;
+    height: 22px;
+    text-indent: -9999px; /* hides the link text */
+}
+
+a.groupBy5 {
+    background: url(../Content/Images/icons/groupBy5.png) no-repeat top left;
+    display: inline-block;
+    background-size: 70px 22px;
+     width: 70px;
+    height: 22px;
+    text-indent: -9999px; /* hides the link text */
+}
+
+a.title1 {
+    background: url(../Content/Images/icons/title1.png) no-repeat top left;
+    display: inline-block;
+    background-size: 70px 22px;
+     width: 70px;
+    height: 22px;
+    text-indent: -9999px; /* hides the link text */
+}
+
+a.title2 {
+    background: url(../Content/Images/icons/title2.png) no-repeat top left;
+    display: inline-block;
+    background-size: 70px 22px;
+    width: 80px;
+    height: 22px;
+    text-indent: -9999px; /* hides the link text */
+}
+
+a.title3 {
+    background: url(../Content/Images/icons/title3.png) no-repeat top left;
+    display: inline-block;
+    background-size: 70px 22px;
+    width: 80px;
+    height: 22px;
+    text-indent: -9999px; /* hides the link text */
+}
+
+a.title4 {
+    background: url(../Content/Images/icons/title4.png) no-repeat top left;
+    display: inline-block;
+    background-size: 70px 22px;
+    width: 80px;
+    height: 22px;
+    text-indent: -9999px; /* hides the link text */
+}
+
+a.title5 {
+    background: url(../Content/Images/icons/title5.png) no-repeat top left;
+    display: inline-block;
+    background-size: 70px 22px;
+    width: 80px;
+    height: 22px;
+    text-indent: -9999px; /* hides the link text */
+}
+
+.devExpressCheckBoxListTd > tbody > tr > td {
+    border-style: none;
+}
+
+.GetPWD {
+    color:green;
+    border-color: forestgreen;
+    width: 100px;
+    height: 36px;
+}
+
+.GetPWD2 {
+    color:white;
+    background-color:green;
+    border-color: forestgreen;
+    width: 100px;
+    height: 36px;
+}
+
+div.wrapperT {
+    margin-right: 300px;
+}
+
+div.contentT {
+    float: left;
+    height: 69px;
+    width: 100%;
+}
+
+div.sidebarT {
+    display: table-cell;
+    vertical-align: bottom;
+    float: right;
+    height: 69px;
+    width: 300px;
+    margin-right: -300px;
+}
+
+div.cleareT {
+    clear: both;
+}
+
+tr.DDSCTRTitile {
+    height: 69px;
+    background-repeat: repeat-x;
+}
+
+td.DDSCTRLTitle {
+    text-align: left;
+}
+
+td.DDSCTitle {
+    text-align: right;
+}
+
+td.SystemTitle {
+    width: auto;
+    height: 40px;
+    text-align: center;
+    vertical-align: middle;
+    background-image: url("../Content/Images/top/topButtopn_left_s.png");
+    background-repeat: no-repeat;
+}
+
+a.SystemLink {
+}
+
+.pageHeader {
+    color: #424949;
+    font-size: 14px;
+    font-family: 微軟正黑體;
+    background-color: #757575;
+    background-color: #ffffff;
+    height: 32px;
+    vertical-align: middle;
+    border: 2px;
+    border-bottom-style: groove;
+}
+
+.topBtn {
+    font-size: medium;
+    font-weight: bold;
+    text-decoration: none;
+    color: #424949;
+    font-family: 微軟正黑體;
+    font-size: 12px;
+}
+
+.sysBtn {
+    font-size: large;
+    font-weight: bold;
+    text-decoration: none;
+    color: #666666;
+    font-family: 微軟正黑體;
+}
+
+.homePage_btn {
+    /*width:100px;*/ /*border: 0px solid #458Bff;*/
+    font-family: 微軟正黑體;
+    font-size: 12px;
+    font-weight: bold;
+    text-decoration: none;
+    margin: 5px;
+    padding: 5px; /*text-align: right; 	background: #1E90FF;*/ /*#D4D4D4;*/
+    color: #757575; /*#FF0000;*/ /* #458B74;	*/ /*	filter: glow(color=RED,strength=1);	 	font-family: "Trebuchet MS",Verdana, Arial, Helvetica, sans-serif;  */
+    /* IE7 IE8 IE9 */
+    /*width:100px;*/ /*border: 0px solid #458Bff;*/
+    font-family /**/: 微軟正黑體;
+    font-size /**/: 12px;
+    font-weight /**/: bold;
+    text-decoration /**/: none;
+    margin /**/: 5px;
+    padding /**/: 5px; /*text-align: right; 	background: #1E90FF;*/ /*#D4D4D4;*/
+    color /**/: #757575; /*#FF0000;*/ /* #458B74;	*/ /*	filter: glow(color=RED,strength=1);	 	font-family: "Trebuchet MS",Verdana, Arial, Helvetica, sans-serif;  */
+    /* IE6 */
+    /*width:100px;*/ /*border: 0px solid #458Bff;*/
+    _font-family: 微軟正黑體;
+    _font-size: 12px;
+    _font-weight: bold;
+    _text-decoration: none;
+    _margin: 5px;
+    _padding: 5px; /*text-align: right; 	background: #1E90FF;*/ /*#D4D4D4;*/
+    _color: #757575; /*#FF0000;*/ /* #458B74;	*/ /*	filter: glow(color=RED,strength=1);	 	font-family: "Trebuchet MS",Verdana, Arial, Helvetica, sans-serif;  */
+}
+
+/* 程式 TITLE style*/
+.func_title {
+    height: 25px;
+    border: 0px solid #458Bff;
+    font-family: 微軟正黑體;
+    font-size: 12px;
+    font-weight: normal;
+    text-decoration: none;
+    margin: 5px;
+    padding: 5px;
+    text-align: left;
+    background: #428BCA; /*#FFEFD5;*/
+    color: white;
+    width: 80%;
+    height: 25px;
+    /* IE7 IE8 IE9 */
+    height /**/: 25px;
+    border /**/: 0px solid #458Bff;
+    font-family /**/: 微軟正黑體;
+    font-size /**/: 12px;
+    font-weight /**/: normal;
+    text-decoration /**/: none;
+    margin /**/: 5px;
+    padding /**/: 5px;
+    text-align /**/: left;
+    background: #428BCA; /*#FFEFD5;*/
+    color /**/: white;
+    width /**/: 80%;
+    height: 25px;
+    /* IE6 */
+    _height: 25px;
+    _border: 0px solid #458Bff;
+    _font-family: 微軟正黑體;
+    _font-size: 14px;
+    _font-weight: bold;
+    _text-decoration: none;
+    _margin: 5px;
+    _padding: 5px;
+    _text-align: left;
+    _background: #1E90FF; /*#FFEFD5;*/
+    _color: white;
+    _width: 80%;
+    height: 25px;
+}
+
+.query_title {
+    font-size: 14px;
+    text-align: left; /*font-family: Arial;*/
+    background: #D5D9DC;
+    color: #282828;
+    /* IE7 IE8 IE9 */
+    font-size /**/: 14px;
+    text-align /**/: left; /*font-family: Arial;*/
+    background /**/: #D5D9DC;
+    color /**/: black;
+    /* IE6 */
+    _font-size: 14px;
+    _text-align: left; /*font-family: Arial;*/
+    _background: #D5D9DC;
+    _color: black;
+    text-align: center;
+    font-family: 微軟正黑體;
+    font-weight: bold;
+    padding: 5px 20px 5px 0px;
+}
+
+.mainLabel {
+    border-bottom-width: 0px;
+    color: black;
+    font-family: 微軟正黑體;
+    font-weight: normal;
+    text-align: right;
+    width: 170px;
+    font-size: 14px;
+    background-color: #EEEEEE; /*filter: progid:DXImageTransform.Microsoft.Gradient(gradientType=1,startColorStr=white,endColorStr=#C1CDCD);	*/ /*filter: progid:DXImageTransform.Microsoft.Gradient(gradientType=1,startColorStr=blue,endColorStr=lightblue);	 */
+    /* IE6 */
+    /*
+    _border-bottom-width: 0px;
+    _color: black;
+    _font: 微軟正黑體;
+    _font-weight: normal;
+    _text-align: right;
+    _width: 170px;
+    _font-size: 14px;
+    _background-color: #EEEEEE;
+    padding: 5px 20px 5px 0px;
+    vertical-align: middle;
+    */
+}
+
+table.mainTable {
+    padding: 0px;
+    border: 0px;
+    width: 100%;
+    border-spacing: 2px;
+    width: 100%;
+    background-color: White;
+    /* IE7 IE8 IE9 */
+    padding /**/: 0px;
+    border /**/: 0px;
+    width /**/: 100%;
+    border-spacing /**/: 2px;
+    width /**/: 100%;
+    background-color /**/: White;
+    /* IE6 */
+    _padding: 0px;
+    _border: 0px;
+    _width: 100%;
+    _border-spacing: 2px;
+    _width: 100%;
+    _background-color: White;
+
+}
+
+.editTable {
+    border-bottom-width: 0px;
+    color: black;
+    font: 微軟正黑體;
+    font-weight: normal;
+    text-align: left;
+    font-size: 12px; /*font-family:微軟正黑體; 	font-size:medium;      border:0;      border-color:#000000; 	background-color:#FFFFFF;*/
+    /* IE7 IE8 IE9 */
+    border-bottom-width /**/: 0px;
+    color /**/: black;
+    font /**/: 微軟正黑體;
+    font-weight /**/: normal;
+    text-align /**/: left;
+    font-size /**/: 12px; /*font-family:微軟正黑體; 	font-size:medium;      border:0;      border-color:#000000; 	background-color:#FFFFFF;*/
+    /* IE6 */
+    _border-bottom-width: 0px;
+    _color: black;
+    _font: 微軟正黑體;
+    _font-weight: normal;
+    _text-align: left;
+    _font-size: 12px; /*font-family:微軟正黑體; 	font-size:medium;      border:0;      border-color:#000000; 	background-color:#FFFFFF;*/
+}
+
+/* Tooltip container */
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+    /* Tooltip text */
+    .tooltip .tooltiptext {
+        visibility: hidden;
+        width: 80px;
+        background-color: darkgrey;
+        color: #fff;
+        text-align: center;
+        padding: 5px 0;
+        border-radius: 2px;
+        /* Position the tooltip text - see examples below! */
+        position: absolute;
+        z-index: 1;
+    }
+
+    /* Show the tooltip text when you mouse over the tooltip container */
+    .tooltip:hover .tooltiptext {
+        visibility: visible;
+    }
+
+span.requiredMark {
+    color: Red;
+    font: ARIAL;
+    font-size: small;
+    /* IE7 IE8 IE9 */
+    color /**/: Red;
+    font /**/: ARIAL;
+    font-size /**/: small;
+    /* IE6 */
+    _color: Red;
+    _font: ARIAL;
+    _font-size: 12px;
+}
+
+div.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+div.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+span.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+    span.close:hover,
+    span.close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+.AreaCodeName {
+    color: #d7ceb2;
+    background-color: #4d94ff;
+    font: 18px 'BazarMedium';
+    letter-spacing: 2px;
+}
+
+.PriceFlagName {
+    color: #d7ceb2;
+    background-color: #ff6666;
+    font: 18px 'BazarMedium';
+    letter-spacing: 2px;
+}
+
+
+div.cust {
+    display: block;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-image: url('../Content/Images/loadingBar.gif');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+div.loading {
+    display: block;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-image: url('../Content/Images/loadingBar.gif');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+
+/*CARD*/
+/*
+.card {
+    margin-bottom: 1.875em;
+    border-radius: 5px;
+    padding: 0;
+    border: 0 solid transparent;
+    -webkit-box-shadow: 0 0 20px rgba(0,0,0,.08);
+    box-shadow: 0 0 20px rgba(0,0,0,.08)
+}
+
+card-body {
+    float: left;
+    padding: 1.25em;
+    position: relative;
+    width: 100%
+}
+*/
+
+}

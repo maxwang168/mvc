@@ -1,0 +1,192 @@
+﻿@model PortalWeb.Areas.SystemConfig.Models.SysCodeInfoVM
+
+@using (Html.BeginForm("Edit", "SysCodeInfo", FormMethod.Post, new { role = "form", id = "EditBE" }))
+{
+    <table class="main_table" border="1" cellpadding="1" cellspacing="1" style="width:100%;">
+        <thead>
+            <tr>
+                <td colspan="4">
+                    資料檢視
+                </td>
+            </tr>
+        </thead>
+        <tr>
+            <th class="mainLabel" width="15%">
+                <span class="requiredMark">＊</span>群組：
+            </th>
+            <td class="editTable" colspan="3">
+                @Html.Label("", Model.EditSysCodeInfo.GroupName)
+            </td>
+        </tr>
+        <tr>
+            <th class="mainLabel" width="15%">
+                <span class="requiredMark">＊</span>子群組：
+            </th>
+            <td class="editTable" colspan="3">
+                @Html.Label("", Model.EditSysCodeInfo.SubGroupName)
+            </td>
+        </tr>
+        <tr>
+            <th class="mainLabel" width="15%">
+                <span class="requiredMark">＊</span>代碼：
+            </th>
+            <td class="editTable" colspan="3">
+                @Html.Label("", Model.EditSysCodeInfo.CodeId)
+            </td>
+        </tr>
+        <tr>
+            <th class="mainLabel" width="15%">
+                <span class="requiredMark">＊</span>代碼名稱：
+            </th>
+            <td class="editTable" colspan="3">
+                @Html.Label("", Model.EditSysCodeInfo.CodeName)
+            </td>
+        </tr>
+        <tr>
+            <th class="mainLabel" width="15%">
+                <span class="requiredMark">＊</span>顯示順序：
+            </th>
+            <td class="editTable" colspan="3">
+                @Html.Label("", Model.EditSysCodeInfo.Seq.ToString())
+            </td>
+        </tr>
+        <tr>
+            <th class="mainLabel" width="15%">
+                可修改：
+            </th>
+            <td class="editTable" colspan="3">
+                @Html.RadioButtonFor(a => a.EditSysCodeInfo.ModifyStatus, "Y", new { disabled = "disabled" })
+                是
+                @Html.RadioButtonFor(a => a.EditSysCodeInfo.ModifyStatus, "N", new { disabled = "disabled" })
+                否
+            </td>
+        </tr>
+        <tr>
+            <th class="mainLabel" width="15%">
+                資料狀態：
+            </th>
+            <td class="editTable" colspan="3">
+                @Html.RadioButtonFor(a => a.EditSysCodeInfo.StatusFlag, "Y", new { disabled = "disabled" })
+                有效
+                @Html.RadioButtonFor(a => a.EditSysCodeInfo.StatusFlag, "N", new { disabled = "disabled" })
+                無效
+            </td>
+        </tr>
+        <tr>
+            <th class="mainLabel" width="15%">
+                說明：
+            </th>
+            <td class="editTable" colspan="3">
+                @Html.Label("", Model.EditSysCodeInfo.Description)
+            </td>
+        </tr>
+        <tr>
+            <th class="mainLabel" width="15%">
+                參數1：
+            </th>
+            <td class="editTable" width="35%">
+                @Html.Label("", Model.EditSysCodeInfo.VarChar01)
+            </td>
+            <th class="mainLabel" width="15%">
+                參數6：
+            </th>
+            <td class="editTable" width="35%">
+                @Html.Label("", Model.EditSysCodeInfo.VarChar06)
+            </td>
+        </tr>
+        <tr>
+            <th class="mainLabel">
+                參數2：
+            </th>
+            <td class="editTable">
+                @Html.Label("", Model.EditSysCodeInfo.VarChar02)
+            </td>
+            <th class="mainLabel">
+                參數7：
+            </th>
+            <td class="editTable">
+                @Html.Label("", Model.EditSysCodeInfo.VarChar07)
+            </td>
+        </tr>
+        <tr>
+            <th class="mainLabel">
+                參數3：
+            </th>
+            <td class="editTable">
+                @Html.Label("", Model.EditSysCodeInfo.VarChar03)
+            </td>
+            <th class="mainLabel">
+                參數8：
+            </th>
+            <td class="editTable">
+                @Html.Label("", Model.EditSysCodeInfo.VarChar08)
+            </td>
+        </tr>
+        <tr>
+            <th class="mainLabel">
+                參數4：
+            </th>
+            <td class="editTable">
+                @Html.Label("", Model.EditSysCodeInfo.VarChar04)
+            </td>
+            <th class="mainLabel">
+                參數9：
+            </th>
+            <td class="editTable">
+                @Html.Label("", Model.EditSysCodeInfo.VarChar09)
+            </td>
+        </tr>
+        <tr>
+            <th class="mainLabel">
+                參數5：
+            </th>
+            <td class="editTable">
+                @Html.Label("", Model.EditSysCodeInfo.VarChar05)
+            </td>
+            <th class="mainLabel">
+                參數10：
+            </th>
+            <td class="editTable">
+                @Html.Label("", Model.EditSysCodeInfo.VarChar10)
+            </td>
+        </tr>
+        @if (Model.EditSysCodeInfo != null)
+        {
+            <tr>
+                <th class="mainLabel" width="15%">
+                    建立者：
+                </th>
+                <td class="editTable" width="35%">
+                    @Html.Label(Model.EditSysCodeInfo.CreatedByName.ToString())
+                </td>
+                <th class="mainLabel" width="15%">
+                    建立時間：
+                </th>
+                <td class="editTable" width="35%">
+                    @Html.Label(Model.EditSysCodeInfo.CreatedDate.ToString("yyyy/MM/dd HH:mm:ss"))
+                </td>
+            </tr>
+            <tr>
+                <th class="mainLabel" width="15%">
+                    異動者：
+                </th>
+                <td class="editTable" width="35%">
+                    @Html.Label(Model.EditSysCodeInfo.UpdatedByName.ToString())
+                </td>
+                <th class="mainLabel" width="15%">
+                    異動時間：
+                </th>
+                <td class="editTable" width="35%">
+                    @Html.Label(Model.EditSysCodeInfo.UpdatedDate.ToString("yyyy/MM/dd HH:mm:ss"))
+                </td>
+            </tr>
+        }
+        <tfoot>
+            <tr>
+                <td align="center" colspan="4">
+                    @Html.ActionLink("離開", "Index", null, new { @class = "Exit" })
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+}

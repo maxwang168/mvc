@@ -1,0 +1,123 @@
+﻿body{
+	margin-top:0;
+	background-image:url(../Content/Images/login/loginLeft.png);
+	background-repeat:repeat-x;
+	
+	/* IE7 IE8 IE9 */
+	margin-top/**/:0;
+	background-image:url(../Content/Images/login/loginLeft.png);
+	background-repeat:repeat-x;
+	
+	/* IE6 */
+	_margin-top:0;
+	_background-image:url(../Content/Images/login/loginLeft.png);
+	_background-repeat:repeat-x;
+}
+
+#loginContent{
+	margin:0 auto;
+	background-image:url(../Content/Images/login/login_bgg.jpg);
+	background-repeat:no-repeat;
+	width:960px;
+	height:700px;
+	
+	/* IE7 IE8 IE9 */
+	margin/**/:0 auto;
+	background-image:url(../Content/Images/login/login_bgg.jpg);
+	background-repeat:no-repeat;
+	width/**/:960px;
+	height/**/:700px;
+	
+	/* IE6 */
+	_margin:0 auto;
+	_background-image:url(../Content/Images/login/login_bgg.jpg);
+	_background-repeat:no-repeat;
+	_width:960px;
+	_height:700px;
+}
+
+#loginForm{
+	margin:0 auto;
+	padding-top:130px;
+	width:513px;
+	
+	/* IE7 IE8 IE9 */
+	margin/**/:0 auto;
+	padding-top/**/:130px;
+	width/**/:513px;
+	
+	/* IE6 */
+	_margin:0 auto;
+	_padding-top:130px;
+	_width:513px;
+}
+
+.formBg{
+	background-image:url(../Content/Images/login/loginInputArea.png);
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#7fbeb1;
+	
+	/* IE7 IE8 IE9 */
+	background-image/**/:url(../Content/Images/login/loginInputArea.png);
+	font-family/**/:Arial, Helvetica, sans-serif;
+	font-size/**/:12px;
+	color/**/:#7fbeb1;
+	
+	/* IE6 */
+	_background-image:url(../Content/Images/login/loginInputArea.png);
+	_font-family:Arial, Helvetica, sans-serif;
+	_font-size:12px;
+	_color:#7fbeb1;
+}
+/*登入帳密字體顏色*/
+.inputTXT{
+	width:240px;
+	padding:4px;
+	border:1px solid #d8d8d8;
+	color:#757575;
+	
+	/* IE7 IE8 IE9 */
+	width/**/:240px;
+	padding/**/:4px;
+	border/**/:1px solid #d8d8d8;
+	color/**/:#757575;
+	
+	/* IE6 */
+	_width:240px;
+	_padding:4px;
+	_border:1px solid #d8d8d8;
+	_color:#757575;
+}
+
+.welcomeTXT{
+	color:#e6f8e3;
+	font-size:12px;
+	padding:4px;
+	
+	/* IE7 IE8 IE9 */
+	color/**/:#e6f8e3;
+	font-size/**/:12px;
+	padding/**/:4px;
+	
+	/* IE6 */
+	_color:#e6f8e3;
+	_font-size:12px;
+	_padding:4px;	
+}
+a.Login
+{
+    background: url(../Content/Images/login/btn_login.png) no-repeat top left;
+     display: inline-block;
+     width: 100px;
+     height: 26px;
+     text-indent: -9999px; /* hides the link text */
+}
+a.LoginClear
+{
+    background: url(../Content/Images/login/btn_clear.png) no-repeat top left;
+     display: inline-block;
+     width: 100px;
+     height: 26px;
+     text-indent: -9999px; /* hides the link text */
+}

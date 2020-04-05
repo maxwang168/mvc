@@ -1,0 +1,410 @@
+﻿@model Entity.SYS.LoginViewModel
+@{
+    Layout = null;
+}
+
+<html>
+    <head>
+        <title>檔案傳輸平台</title>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="@Url.Content("~/Content/font-awesome.min.css")">
+        <link rel="stylesheet" type="text/css" href=@Url.Content("~/Content/bootstrap.css") />
+        <script type="text/javascript" src=@Url.Content("~/Scripts/jquery-1.12.4.min.js")></script>
+        <script type="text/javascript" src=@Url.Content("~/Scripts/bootstrap.min.js")></script>
+        <link href="~/Content/gray_style.css" rel="stylesheet" />
+        <link href="~/Content/DDSC.css" rel="stylesheet" />
+        <style>
+            html {background-image: url(@Url.Content("~/Content/Images/bg.jpg")); background-size:100% 100%; font-family: 'Century Gothic', Microsoft JhengHei; width:100%; height:100%;}
+            body {background-color:rgba(0,0,0,0.3); font-family: 'Century Gothic', Microsoft JhengHei; width:100%; height:100%;}
+            table {width:60%; height:100%; margin:0 auto; text-align:center;} .logo:hover {opacity:0.8; transition: ease-in-out 0.2s;} .logo img {width:300px; margin-top:5%;} .logo h4 {color:#fff; letter-spacing:1px; line-height:16px; font-size:14px;} @@media(min-width:768px) {.logo h4 {letter-spacing:2px; line-height:20px; font-size:18px}} .form {text-align:left; color:#fff;} .checkbox {padding:0 !important} .checkbox p {font-size:10px;} @@media(min-width:768px) {.checkbox p {font-size:12px; margin:0}} .btn {background:#0099ff; color:#fff; font-size:15px; width:100%; border:none;}
+        </style>
+        <style>
+            .title_block {
+                height: 200px;
+                overflow-y: auto;
+                border: 1px #A6A8A7 solid;
+                border-bottom-right-radius: 3px;
+                border-bottom-left-radius: 3px;
+                vertical-align: top;
+            }
+
+            .header_block {
+                height: 35px;
+                background-repeat: repeat-x;
+                border-top: 1px #A6A8A7 solid;
+                border-left: 1px #A6A8A7 solid;
+                border-right: 1px #A6A8A7 solid;
+                font-family: 微軟正黑體;
+                font-size: 16px;
+                padding: 5px 0 0 0px;
+                border-top-left-radius: 3px;
+                border-top-right-radius: 3px;
+                vertical-align: top;
+                color: #696969;
+                font-weight: bold;
+            }
+
+            .login_textbox_155 {
+                width: 220px;
+                height: 35px;
+                display: block;
+                margin-top: 20px;
+                margin-left: 5px;
+            }
+
+            .login_textbox_62 {
+                width: 62px;
+                display: block;
+                margin-top: 5px;
+                margin-left: 20px;
+            }
+
+            .errorMsg {
+                color: red;
+            }
+
+            .modal-content {
+                width: 630px !important;
+                /*height:700px;*/
+                height: 400px;
+                /*margin: 30px auto !important;*/
+                margin-bottom: 100px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { role = "form", id = "LoginForm", style = "margin-bottom: 0px;" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <table>
+                        <tr>
+                            <td>
+                                <div class="row table-bordered col-sm-8 col-sm-offset-2" style="background-color: rgba(255,255,255,.7);border-radius:5px;padding:30px 50px 30px 50px">
+                                    <div class="row table-bordered col-sm-8 col-sm-offset-2">
+
+                                        <div class="logo" style="margin-bottom:30px">
+                                            @*<img style="width:150px;height:150px" src="@Url.Content("~/Content/Images/logo.png")" />*@<span style="font-size:36px; font-weight:bold; color:black;">DEMO平台</span>
+                                        </div>
+                                        <div id="insert" class="form">
+                                            <form class="form-horizontal">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-id-card-o" aria-hidden="true" style="width:20px"></i></span>@Html.TextBoxFor(m => m.LoginId, new { aria_required = true, @class = "form-control", placeholder = "使用者代號", autocomplete = "off", MaxLength = 10 })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <br />
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-unlock-alt" aria-hidden="true" style="width:20px"></i></span>@Html.PasswordFor(m => m.Password, new { aria_required = true, @class = "form-control", placeholder = "使用者密碼", autocomplete = "off", MaxLength = 18 })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="" style="color:red">
+                                                        @Model.Message
+                                                        <br />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="">
+                                                        <button type="button" class="btn btn-primary" onClick="$('#LoginForm').submit();">登入</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                }
+            </div>
+         </div>
+
+        @using (Html.BeginForm("ChangePwd", "Account", FormMethod.Post, new { role = "form", id = "EditBE", style = "margin-bottom: 0px;" }))
+        {
+            <div id="myModal" class="modal">
+                <!-- Modal content -->
+                <div class="modal-content" style="margin:200px auto;padding:0px 30px;">
+                    <span class="close" name="close" style="margin:5px">x</span>
+                    <table class="main_table" border="1" cellpadding="1" cellspacing="1" style="width:100%;height:82%">
+                        <tr>
+                            <th class="mainLabel" style="padding:0px">
+                                <span class="requiredMark">＊</span>請輸入原密碼：
+                            </th>
+                            <td class="editTable" colspan="3">
+                                @Html.PasswordFor(a => a.EditChangePwd.OldPwd, new { MaxLength = 18, placeholder = "請輸入", autocomplete = "off" })
+                                @Html.ValidationMessageFor(a => a.EditChangePwd.OldPwd, "", new { id = "lblMsg_OldPwd", @style = "color:red" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="mainLabel" style="padding:0px">
+                                <span class="requiredMark">＊</span>請輸入新密碼：
+                            </th>
+                            <td class="editTable" colspan="3">
+                                @Html.PasswordFor(a => a.EditChangePwd.NewPwd, new { MaxLength = 18, placeholder = "請輸入8-18英數字", autocomplete = "off" })
+                                @Html.ValidationMessageFor(a => a.EditChangePwd.NewPwd, "", new { id = "lblMsg_NewPwd", @style = "color:red" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="mainLabel" style="padding:0px">
+                                <span class="requiredMark">＊</span>請再次輸入新密碼：
+                            </th>
+                            <td class="editTable" colspan="3">
+                                @Html.PasswordFor(a => a.EditChangePwd.NewPwd2, new { MaxLength = 18, placeholder = "請輸入8-18英數字", autocomplete = "off" })
+                                @Html.ValidationMessageFor(a => a.EditChangePwd.NewPwd2, "", new { id = "lblMsg_NewPwd2", @style = "color:red" })
+                            </td>
+                        </tr>
+                        <tfoot>
+                            <tr>
+                                <td align="center" colspan="4">
+                                    @Html.HiddenFor(a => a.EditChangePwd.UserId)
+                                    @Html.HiddenFor(a => a.EditChangePwd.UserUid)
+                                    @Html.HiddenFor(a => a.EditChangePwd.OrgId)
+                                    @Html.HiddenFor(a => a.EditChangePwd.Pwd3)
+                                    <a href="javascript:$('#EditBE').submit();" class="Ok" onclick="return isConfirm();">儲存</a>&nbsp;&nbsp;
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        }
+        <script>
+            $(document).ready(function () {
+                /*! Fades in page on load */
+                $('body').css('display', 'none');
+                $('body').fadeIn(500);
+
+            });
+
+            if (top != self) { top.location = self.location; }
+            function popContent(Text) {
+                var m_url = '@Url.Action("Dialog", "Home")' + "?Text=" + Text;
+
+                //window.showModalDialog(m_url, ' ', 'toolbar=no,fullscreen=no,location=no,top=' + (window.screen.availHeight - 30) / 2 + ',left=' + (window.screen.availWidth - 10) / 2 + ',directories=no,status=no,menubar=no,scrollbars=no,resizable=no,dialogWidth=400px,dialogHeight=200px');
+                if (navigator.userAgent.indexOf("Chrome") > 0) {
+                    var paramsChrome = 'height=300, width=500, top=' + (((window.screen.height - 300) / 2) - 50) +
+            ',left=' + ((window.screen.width - 500) / 2) + ',toolbar=no,fullscreen=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no';
+
+                    window.open(m_url, 'xxx', paramsChrome);
+                }
+                else {
+                    $.blockUI({ message: '', fadeIn: 0 });
+                    setTimeout(function () {
+                        window.showModalDialog(m_url, 'xxx', 'toolbar=no;fullscreen=no;location=no;directories=no;status=no;menubar=no;scrollbars=no;resizable=no;dialogWidth=400px;dialogHeight=300px;centerScreen=yes;');
+                    }, 0);
+                    $.unblockUI();
+                    //setTimeout(function () {
+                    //    $.unblockUI({
+                    //        onUnblock: function () {
+                    //            window.showModalDialog(m_url, 'xxx', 'toolbar=no;fullscreen=no;location=no;directories=no;status=no;menubar=no;scrollbars=no;resizable=no;dialogWidth=400px;dialogHeight=300px;centerScreen=yes;');
+                    //        }
+                    //    });
+                    //}, 2000);
+                    //window.showModalDialog(m_url, 'xxx', 'toolbar=no;fullscreen=no;location=no;directories=no;status=no;menubar=no;scrollbars=no;resizable=no;dialogWidth=400px;dialogHeight=300px;centerScreen=yes;');
+                }
+            }
+
+            var insert = document.getElementById('insert');
+            //重設密碼介面跳出時需隱藏
+            var modal = document.getElementById('myModal');
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function () {
+                modal.style.display = "none";
+                insert.style.display = "block";
+            }
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                    insert.style.display = "block";
+                }
+            }
+
+            var isNew = '@Model.IsNew';
+            var orgId = '@Model.OrgId';
+            var userId = '@Model.LoginId';
+            var userUuid = '@Model.UserUuid';
+            var pwd3 = '@Model.Pwd3';
+            if (isNew != '' && isNew == 'Y') {
+                modal.style.display = "block";
+                insert.style.display = "none";
+                $("#EditChangePwd_OrgId").val(orgId);
+                $("#EditChangePwd_UserId").val(userId);
+                $("#EditChangePwd_UserUid").val(userUuid);
+                $("#EditChangePwd_Pwd3").val(pwd3);
+                alert("首次登入請變更密碼!!");
+            }
+
+            var alertMsg = '@Model.Message';
+            if (alertMsg != '') {
+                //alert(alertMsg);
+            }
+
+            /**
+            * Form送出前,client欄位檢查
+            */
+            function isConfirm() {
+                clearMsgLabel();
+                var m_return = true;
+
+                //debugger
+                try {
+                    //原密碼
+                    if ($("#EditChangePwd_OldPwd").val() == "") {
+                        $("#lblMsg_OldPwd").text("原密碼 欄位是必要項。");
+                        m_return = false;
+                    }
+                    //新密碼
+                    if ($("#EditChangePwd_NewPwd").val() == "") {
+                        $("#lblMsg_NewPwd").text("新密碼 欄位是必要項。");
+                        m_return = false;
+                    }
+                    else if (getByteLength($("#EditChangePwd_NewPwd").val()) < 8 || getByteLength($("#EditChangePwd_NewPwd").val()) > 18) {
+                        $("#lblMsg_NewPwd").text("新密碼 欄位限長8-18 bytes。");
+                        m_return = false;
+                    }
+                    else if (isAlphnumberic($("#EditChangePwd_NewPwd").val()) == false) {
+                        $("#lblMsg_NewPwd").text("新密碼 欄位只可輸入英文及數字值。");
+                        m_return = false;
+                    }
+                    else if (pwdValid2($("#EditChangePwd_NewPwd").val()) == false) {
+                        $("#lblMsg_NewPwd").text("新密碼 欄位輸入格式錯誤(不可連續三位相鄰英數字)。");
+                        m_return = false;
+                    }
+                    else if (false == pwdValid3($("#EditChangePwd_NewPwd").val())) {
+                        $("#lblMsg_NewPwd").text("新密碼 欄位輸入格式錯誤(必須為英數字組合)。");
+                        m_return = false;
+                    }
+                    else if ($("#EditChangePwd_OldPwd").val() == $("#EditChangePwd_NewPwd").val()) {
+                        $("#lblMsg_NewPwd").text("新密碼 欄位不可與舊密碼相同。");
+                        m_return = false;
+                    }
+                    //確認密碼
+                    if ($("#EditChangePwd_NewPwd2").val() == "") {
+                        $("#lblMsg_NewPwd2").text("確認密碼 欄位是必要項。");
+                        m_return = false;
+                    }
+                    else if (getByteLength($("#EditChangePwd_NewPwd2").val()) < 8 || getByteLength($("#EditChangePwd_NewPwd2").val()) > 18) {
+                        $("#lblMsg_NewPwd2").text("確認密碼 欄位限長8-18 bytes。");
+                        m_return = false;
+                    }
+                    else if (isAlphnumberic($("#EditChangePwd_NewPwd2").val()) == false) {
+                        $("#lblMsg_NewPwd2").text("確認密碼 欄位只可輸入英文及數字值。");
+                        m_return = false;
+                    }
+                    else if (pwdValid2($("#EditChangePwd_NewPwd2").val()) == false) {
+                        $("#lblMsg_NewPwd2").text("確認密碼 欄位輸入格式錯誤(不可連續三位相鄰英數字)。");
+                        m_return = false;
+                    }
+                    else if ($("#EditChangePwd_NewPwd").val() != $("#EditChangePwd_NewPwd2").val()) {
+                        $("#lblMsg_NewPwd2").text("確認密碼 欄位與新密碼不一致。");
+                        m_return = false;
+                    }
+                }
+                catch (e) {
+                    alert(e);
+                }
+
+                return m_return;
+            }
+            /**
+             * 清空驗證span內容值
+            */
+            function clearMsgLabel() {
+                var lblMsgObj = $("#EditBE").find('Span[id^="lblMsg_"]').text("");  //即id含lblMsg_的span之text清成空字串
+            }
+
+            /**
+            * 傳回字串的byte長度
+            * @@param {string} text - 要計算長度的文字
+            * @@author 2011/04/07 (網路上取得的)
+            */
+            function getByteLength(text) {
+                try {
+                    var b = text.match(/[^\x00-\xff]/g);
+                    //alert(text.length + (!b ? 0 : b.length));
+                    return (text.length + (!b ? 0 : b.length));
+                }
+                catch (Error) {
+                    alert(Error.message);
+                }
+            }
+
+            /**
+            * 檢查格式-英數字
+            * @@param {string} text - 字串
+            * @@author 2017/02/02 (網路取得再修改的)
+            */
+            function isAlphnumberic(text) {
+                var regex = /^[a-zA-Z0-9]+$/;
+                return regex.test(text);
+            }
+
+            /**
+            * 檢查密碼是否符合規則-鍵盤橫向連續值(左向右,右向左),不分大小寫,每3個字比對
+            * @@param {string} text - 要檢查的字串
+            * @@author 2017/03/031
+            */
+            function pwdValid2(text) {
+                if (text == null || text.length == 0) return false;
+
+                var s1 = text.toLowerCase();
+                var a1 = "1234567890";
+                var a2 = "qwertyuiop";
+                var a3 = "asdfghjkl";
+                var a4 = "zxcvbnm";
+                var array1 = [];
+                array1.push(a1);
+                array1.push(a1.split("").reverse().join(""));
+                array1.push(a2);
+                array1.push(a2.split("").reverse().join(""));
+                array1.push(a3);
+                array1.push(a3.split("").reverse().join(""));
+                array1.push(a4);
+                array1.push(a4.split("").reverse().join(""));
+
+                var s2 = "";
+                var found = false;
+                $.each(s1.split(""), function (index, value) {
+                    if (index == s1.length - 1) return false;
+                    s2 = s1.substr(index, 3);
+                    //alert('s2=' + s2);
+                    $.each(array1, function (index2, value2) {
+                        if (s2.length == 3) {
+                            if (value2.indexOf(s2) > -1) {
+                                //alert('found in array ' + index2 + ',' + value2 + ',' + s2);
+                                found = true;
+                                return false; //PS: for break loop, not truely exit function
+                            }
+                        }
+                    });
+                    if (found == true) return false;
+                });
+
+                return !found;
+            }
+
+            //檢核密碼需為英數字組合
+            function pwdValid3(text) {
+                var regex = /^(?=.*[a-zA-Z])(?=.*[0-9])/g;
+                return regex.test(text);
+            }
+
+            $(function () {
+                $('#@Html.IdFor(a =>　a.Password), #@Html.IdFor(a => a.Captcha)')
+                    .keyup(function (event) {
+                        event && event.which && event.which == '13' && $('#LoginForm').submit();
+                    });
+            });
+        </script>
+    </body>
+</html>
+
